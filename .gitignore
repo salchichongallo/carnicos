@@ -1,0 +1,23 @@
+# Dependency directories
+node_modules
+/vendor
+
+# Dotenv environment variable file
+.env
+
+# Editors/IDEs
+.idea
+
+# Generated files
+/coverage
+/public/assets
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock

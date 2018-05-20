@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "watch": "webpack --hide-modules --watch",
+    "build": "webpack --hide-modules",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "jest --clearCache && cross-env NODE_ENV=test jest --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/lodash": "^4.14.108",
+    "@types/node": "^9.6.7",
+    "awesome-typescript-loader": "^4.0.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-typescript": "^0.12.0",
+    "file-loader": "^1.1.11",
+    "jest-cli": "^22.4.3",
+    "node-sass": "^4.9.0",
+    "prettier": "^1.12.1",
+    "resolve-url-loader": "^2.3.0",
+    "sanitize.css": "^5.0.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "ts-jest": "^22.4.5",
+    "tsconfig-paths-webpack-plugin": "^3.0.3",
+    "typescript": "^2.8.3",
+    "typescript-eslint-parser": "^15.0.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "cross-env": "^5.1.5",
+    "lodash": "^4.17.10"
+  }
+}
