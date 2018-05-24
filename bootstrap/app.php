@@ -1,36 +1,28 @@
 <?php
 
-$app = new \Illuminate\Container\Container;
+use Itm\Foundation\Application;
+
+$app = new Application(__DIR__.'/..');
+
+Application::setInstance($app);
 
 $app->instance(
     \Illuminate\Contracts\Container\Container::class,
     $app
 );
 
-$db = new Illuminate\Database\Capsule\Manager;
-$db->addConnection([
-    'driver'    => 'mysql',
-    'host'      => '127.0.0.1',
-    'database'  => 'carnicos',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
 $app->instance(
-    \Illuminate\Database\ConnectionInterface::class,
-    $db->getConnection('default')
+    \Illuminate\Container\Container::class,
+    $app
 );
 
-$app->bind(
-    \Meat\Repositories\PresentationRepository::class,
-    \App\Repositories\PresentationRepository::class
+$app->instance(
+    \Itm\Contracts\Foundation\Application::class,
+    $app
 );
 
-$app->bind(
-    \Meat\Repositories\ProductRepository::class,
-    \App\Repositories\ProductRepository::class
-);
+require_once __DIR__.'/views.php';
+require_once __DIR__.'/database.php';
+require_once __DIR__.'/repositories.php';
 
 return $app;

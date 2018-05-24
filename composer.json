@@ -16,7 +16,10 @@
         "App\\": "app/",
         "Itm\\": "src/Itm/",
         "Meat\\": "src/Meat/"
-      }
+      },
+      "files": [
+        "./app/helpers.php"
+      ]
     },
     "autoload-dev": {
       "psr-4": {
