@@ -43,7 +43,8 @@ class ProductRepository implements ProductRepositoryContract
      */
     public function find(string $code): Product
     {
-        $product = $this->db->table(Table::VIEW_PRODUCTS)->find($code);
+        $product = $this->db->table(Table::VIEW_PRODUCTS)
+            ->where('codigo', '=', $code)->first();
 
         if (! $product) {
             throw new Exception("Product [{$code}] not found.");
