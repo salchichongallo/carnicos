@@ -1,1 +1,25 @@
 @import '~sanitize.css/sanitize.css';
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: none;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  max-width: 250px;
+  border-radius: 3px;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+  margin: 0 auto;
+}
+
+p {
+  font-size: 20px;
+}
+
+a {
+  color: $text-color;
+}

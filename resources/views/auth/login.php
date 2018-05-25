@@ -8,10 +8,8 @@
         <?php partial('nav'); ?>
 
         <div class="app-content-wrapper">
-            <main class="app-content-wrapper__content t-center">
-                <i class="emoji emoji--xlarge">😖</i>
-                <div class="text text--xlarge">404</div>
-                <h1 class="text text--paragraph">Página no encontrada</h1>
+            <main class="app-content-wrapper__content">
+                <h1 class="page-title">Login</h1>
             </main>
         </div>
     </div>

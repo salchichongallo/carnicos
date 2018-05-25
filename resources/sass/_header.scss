@@ -1,0 +1,15 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 66px;
+}
+
+.app-logo {
+  width: 150px;
+  height: 40px;
+
+  background: url(../images/logo.png) no-repeat center;
+  background-size: contain;
+}

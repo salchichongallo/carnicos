@@ -9,4 +9,6 @@ abstract class Table
     public const VIEW_PRODUCTS = 'view_productos';
 
     public const PRESENTATIONS = 'presentaciones';
+
+    public const CITIES = 'ciudades';
 }

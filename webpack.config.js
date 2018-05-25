@@ -13,7 +13,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'resources/ts/app.ts'),
 
   output: {
-    publicPath: './',
+    publicPath: './assets/',
     filename: 'bundle.js',
     path: path.join(__dirname, 'public/assets'),
   },

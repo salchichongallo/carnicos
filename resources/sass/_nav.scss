@@ -1,0 +1,24 @@
+.nav {
+  display: inline-block;
+
+  width: 100%;
+  max-width: 220px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+    text-decoration: none;
+
+    > .icon {
+      margin-right: 16px;
+      color: currentColor;
+    }
+
+    &--disabled {
+      color: $gray-400;
+      pointer-events: none;
+    }
+  }
+}

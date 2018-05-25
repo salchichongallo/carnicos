@@ -1,0 +1,9 @@
+.actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &--end {
+    justify-content: flex-end;
+  }
+}
