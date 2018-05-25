@@ -15,6 +15,11 @@ class Request extends Fluent
         return $request;
     }
 
+    public function has(string $parameter): bool
+    {
+        return $this->offsetExists($parameter);
+    }
+
     public function method(): string
     {
         return $_SERVER['REQUEST_METHOD'];

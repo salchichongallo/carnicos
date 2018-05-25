@@ -1,24 +1,10 @@
 <?php
 
-use Itm\Foundation\Application;
+$app = new \Itm\Foundation\Application(__DIR__.'/..');
 
-$app = new Application(__DIR__.'/..');
-
-Application::setInstance($app);
-
-$app->instance(
-    \Illuminate\Contracts\Container\Container::class,
-    $app
-);
-
-$app->instance(
-    \Illuminate\Container\Container::class,
-    $app
-);
-
-$app->instance(
-    \Itm\Contracts\Foundation\Application::class,
-    $app
+$app->singleton(
+    \Itm\Contracts\Http\Kernel::class,
+    \App\Http\Kernel::class
 );
 
 require_once __DIR__.'/views.php';
