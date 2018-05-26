@@ -11,7 +11,7 @@
             <main class="app-content-wrapper__content">
                 <section id="app-modal" class="modal modal--opened">
                     <div class="modal__container">
-                        <form method="POST" action="" class="modal__content">
+                        <form method="POST" action="?menu=bienvenido" class="modal__content">
                             <h1 class="modal__title">¡Bienvenido!</h1>
 
                             <p>Selecciona tu ciudad para continuar:</p>
@@ -21,7 +21,7 @@
                                     <?php
                                         foreach($cities as $city) {
                                             $name = escape($city->getName());
-                                            echo "<option value=\"{$city->getId()}\">{$name}</option>";
+                                            echo "<option value=\"{$name}\">{$name}</option>";
                                         }
                                     ?>
                                 </select>

@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use Itm\Http\Request;
 use Meat\Repositories\CityRepository;
+use Itm\Session\CookieSession as Cookie;
 
 class WelcomeController extends Controller
 {
-    public function showWelcome(CityRepository $repository)
+    public function showWelcome(Cookie $cookie, CityRepository $repository)
     {
+        if ($cookie->has('city')) {
+            return redirect('?menu=promociones');
+        }
+
         $cities = $repository->all();
 
         return view('welcome', compact('cities'));
     }
 
-    public function changeCity(Request $request)
+    public function changeCity(Request $request, Cookie $cookie)
     {
-        return 'Ciudad cambiada a '. $request->city;
+        $cookie->set('city', $request->city);
+
+        return redirect('?menu=promociones');
     }
 
     public function showNotFound()
