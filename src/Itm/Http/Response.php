@@ -27,11 +27,20 @@ class Response
             return $this->content->render();
         }
 
+        if ($this->isContentResponse()) {
+            return $this->content->send();
+        }
+
         echo $this->content;
     }
 
     protected function isRenderable(): bool
     {
         return $this->content instanceof Renderable;
+    }
+
+    protected function isContentResponse(): bool
+    {
+        return $this->content instanceof self;
     }
 }

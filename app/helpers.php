@@ -1,5 +1,6 @@
 <?php
 
+use Itm\Http\RedirectResponse;
 use Itm\Foundation\Application;
 use Illuminate\Support\Collection;
 use Itm\Contracts\View\ViewFactory;
@@ -29,6 +30,11 @@ function partial(string $name, $parameters = [])
 function escape(string $text)
 {
     return htmlspecialchars($text, ENT_COMPAT | ENT_HTML5);
+}
+
+function redirect(string $path)
+{
+    return (new RedirectResponse)->to($path);
 }
 
 function session($key = null)
