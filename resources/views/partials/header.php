@@ -4,8 +4,7 @@
         </a>
 
         <div class="auth-actions">
-            <a href="?menu=login" class="btn m-r">Login</a>
-            <a href="?menu=registro" class="btn btn--primary">Registro</a>
+            <a href="?menu=login" class="btn btn--inline m-r">Login</a>
         </div>
     </div>
 </header>
