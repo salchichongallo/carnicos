@@ -12,6 +12,7 @@ $app->singleton(
             ->register('header', 'partials/header.php')
             ->register('nav', 'partials/nav.php')
             ->register('footer', 'partials/footer.php')
+            ->register('message', 'partials/message.php')
             ->register('welcome', 'welcome.php')
             ->register('login', 'auth/login.php')
             ->register('register', 'auth/register.php')
