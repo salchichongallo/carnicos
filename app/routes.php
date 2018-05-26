@@ -3,6 +3,7 @@
 use App\Http\Controllers\{
     AdminController,
     WelcomeController,
+    PromotionController,
     Auth\LoginController,
     Auth\RegisterController
 };
@@ -19,6 +20,8 @@ $router->post('login', LoginController::class)->login();
 
 $router->get('registro', RegisterController::class)->showRegister();
 $router->post('registro', RegisterController::class)->register();
+
+$router->get('promociones', PromotionController::class)->showPromotions();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();
