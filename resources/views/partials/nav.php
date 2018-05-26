@@ -7,6 +7,10 @@
         <i class="icon">shopping_cart</i>
         Realizar pedido
     </a>
+    <a href="?menu=registro" class="nav__item">
+        <i class="icon">person_add</i>
+        Registrar Tendero
+    </a>
     <a href="?menu=registrar_cliente" class="nav__item">
         <i class="icon">people</i>
         Registrar cliente
