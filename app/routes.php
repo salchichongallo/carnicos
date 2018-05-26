@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\{
+    AdminController,
     WelcomeController,
     Auth\LoginController,
     Auth\RegisterController
 };
 
 $router = app('router');
+
+$router->get('init', AdminController::class)->initApp();
 
 $router->get('bienvenido', WelcomeController::class)->showWelcome();
 $router->post('bienvenido', WelcomeController::class)->changeCity();
