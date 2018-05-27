@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Itm\Http\Request;
+use Meat\Contracts\Auth\AuthService;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
@@ -11,8 +13,10 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function login()
+    public function login(AuthService $auth, Request $request)
     {
-        return 'Please wait...';
+        $user = $auth->attempt($request->email, $request->password);
+
+        return 'Please wait...'. $user->getName();
     }
 }
