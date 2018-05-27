@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use Itm\Routing\Controller as BaseController;
+
+abstract class Controller extends BaseController
 {
     //
 }

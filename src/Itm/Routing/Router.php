@@ -4,6 +4,7 @@ namespace Itm\Routing;
 
 use Exception;
 use Itm\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Container\Container;
 
 class Router
@@ -35,7 +36,20 @@ class Router
             throw new RouteNotFoundException("Route not found.");
         }
 
-        return $route->dispatch($request);
+        return $this->runRouteWithinStack($route, $request);
+    }
+
+    protected function runRouteWithinStack($route, $request)
+    {
+        $middleware = $route->gatherMiddleware();
+
+        return (new Pipeline($this->app))
+            ->send($request)
+            ->through($middleware)
+            ->via('handle')
+            ->then(function ($request) use ($route) {
+                return $route->run($request);
+            });
     }
 
     public function get($uri, $controller)

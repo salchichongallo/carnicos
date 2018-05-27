@@ -42,7 +42,7 @@ class Route
         $this->controller = $controller;
     }
 
-    public function dispatch(Request $request)
+    public function run(Request $request)
     {
         return new Response(
             $this->runController()
@@ -51,18 +51,35 @@ class Route
 
     protected function runController()
     {
-        $instance = $this->container->make($this->controller);
-
-        $dependencies = $this->resolveClassMethodDependencies(
-            [],
-            $instance,
-            $this->action
+        return $this->controllerDispatcher()->dispatch(
+            $this, $this->getController(), $this->getControllerMethod()
         );
+    }
 
-        return call_user_func(
-            [ $instance, $this->action ],
-            ...array_values($dependencies)
+    public function getController()
+    {
+        if (is_string($this->controller)) {
+            $this->controller = $this->container->make($this->controller);
+        }
+
+        return $this->controller;
+    }
+
+    public function gatherMiddleware()
+    {
+        return $this->controllerDispatcher()->getMiddleware(
+            $this->getController(), $this->getControllerMethod()
         );
+    }
+
+    public function controllerDispatcher()
+    {
+        return new ControllerDispatcher($this->container);
+    }
+
+    protected function getControllerMethod()
+    {
+        return $this->action;
     }
 
     public function getName(): string

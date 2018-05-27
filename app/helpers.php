@@ -4,6 +4,7 @@ use Itm\Http\RedirectResponse;
 use Itm\Foundation\Application;
 use Itm\Contracts\Hashing\Hasher;
 use Itm\Contracts\View\ViewFactory;
+use Itm\Contracts\Bus\{Bus, Command};
 use Itm\Session\{Session, CookieSession};
 
 function app($abstract = null, $parameters = [])
@@ -67,4 +68,12 @@ function bcrypt($value)
     $hasher = app(Hasher::class);
 
     return $hasher->make($value);
+}
+
+function dispatch(Command $command)
+{
+    /** @var Bus $bus */
+    $bus = app(Bus::class);
+
+    return $bus->dispatch($command);
 }
