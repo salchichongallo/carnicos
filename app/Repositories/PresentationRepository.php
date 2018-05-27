@@ -47,7 +47,7 @@ class PresentationRepository implements PresentationRepositoryContract
     {
         return $this->db
             ->table(Table::PRESENTATIONS)
-            ->insert($this->mapper->forTable(
+            ->insert($this->mapper->toTable(
                 $presentation
             ));
     }

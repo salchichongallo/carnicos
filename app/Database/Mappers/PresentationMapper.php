@@ -8,9 +8,10 @@ use Meat\Product\Presentation;
 
 class PresentationMapper implements Mapper
 {
-    public function forTable(Presentation $presentation): array
+    public function toTable(Presentation $presentation): array
     {
         return [
+            'id' => $presentation->getId(),
             'descripcion' => $presentation->getDescription(),
         ];
     }
