@@ -9,7 +9,7 @@ class Request extends Fluent
     public static function capture()
     {
         $request = new self(
-            $_SERVER['REQUEST_METHOD'] == 'GET' ? $_GET : $_POST
+            $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET : $_POST
         );
 
         return $request;

@@ -47,7 +47,7 @@ class Kernel implements KernelContract
 
     protected function enableHttpMethodParameterOverride(Request $request): void
     {
-        if ($request->method() == 'GET' && ! $request->menu) {
+        if ($request->method() === 'GET' && ! $request->menu) {
             $request->menu = 'bienvenido';
         } else if ($request->method() != 'GET') {
             $request->menu = $_GET['menu'] ?? '404';

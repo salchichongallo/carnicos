@@ -21,7 +21,7 @@ class RouteCollection
         $routes = array_reverse($this->getRoutes($method));
 
         foreach ($routes as $route) {
-            if ($routeName == $route->getName()) {
+            if ($routeName === $route->getName()) {
                 return $route;
             }
         }

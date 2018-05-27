@@ -47,7 +47,7 @@ abstract class View implements Renderable
 
     public function hasName(string $name): bool
     {
-        return $this->name == $name;
+        return $this->name === $name;
     }
 
     public function setParameters(array $parameters = []): void

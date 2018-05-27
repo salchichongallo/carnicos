@@ -10,7 +10,7 @@ class Session extends BaseSession
             session_name($name);
         }
 
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
