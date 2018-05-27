@@ -8,6 +8,7 @@
     "EditorConfig.EditorConfig",
     "felixfbecker.php-intellisense",
     "WallabyJs.wallaby-vscode",
-    "wayou.vscode-todo-highlight"
+    "wayou.vscode-todo-highlight",
+    "streetsidesoftware.code-spell-checker"
 	]
 }

@@ -14,5 +14,26 @@
       ".ts",
       ".tsx"
     ]
-  }
+  },
+  "cSpell.words": [
+    "administrador",
+    "carnicos",
+    "ciudad",
+    "ciudades",
+    "descripcion",
+    "direccion",
+    "hasher",
+    "id",
+    "ingreso",
+    "medellín",
+    "nombre",
+    "presentacion",
+    "presentaciones",
+    "productos",
+    "promociones",
+    "telefono",
+    "ultimo",
+    "usuarios",
+    "view"
+  ]
 }
