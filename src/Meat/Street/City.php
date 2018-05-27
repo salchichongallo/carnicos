@@ -14,6 +14,13 @@ class City
      */
     protected $name;
 
+    protected $totalVisits = 0;
+
+    public function incrementVisits(int $amount = 1)
+    {
+        $this->totalVisits += $amount;
+    }
+
     /**
      * @return string
      */
@@ -44,5 +51,21 @@ class City
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalVisits()
+    {
+        return $this->totalVisits;
+    }
+
+    /**
+     * @param int $totalVisits
+     */
+    public function setTotalVisits(int $totalVisits): void
+    {
+        $this->totalVisits = $totalVisits;
     }
 }

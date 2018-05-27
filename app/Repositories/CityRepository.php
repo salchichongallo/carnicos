@@ -50,7 +50,28 @@ class CityRepository implements CityRepositoryContract
             throw new Exception("City [{$city}] not found.");
         }
 
-        return $this->mapper->fromTable($result);
+        $city = $this->mapper->fromTable($result);
+
+        $city->setTotalVisits(
+            $this->findVisits($city)
+        );
+
+        return $city;
+    }
+
+    protected function findVisits(City $city): int
+    {
+        $visitsTable = Table::VISITS;
+
+        $result = $this->db->table($visitsTable)
+            ->where('ciudad_id', '=', $city->getId())
+            ->first(['total']);
+
+        if (! $result) {
+            throw new Exception("City [{$city->getName()}] not found in {$visitsTable} table.");
+        }
+
+        return $result->total;
     }
 
     public function add(City $city): bool
@@ -68,5 +89,14 @@ class CityRepository implements CityRepositoryContract
         return collect($cities)->map(function ($city) {
             return $this->mapper->fromTable($city);
         })->toArray();
+    }
+
+    public function updateVisits(City $city): bool
+    {
+        $result = $this->db->table(Table::VISITS)
+            ->where('ciudad_id', '=', $city->getId())
+            ->update([ 'total' => $city->getTotalVisits() ]);
+
+        return $result !== 0;
     }
 }

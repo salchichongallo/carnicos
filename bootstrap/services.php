@@ -16,6 +16,11 @@ $app->singleton(
         /** @var \Itm\Bus\Bus $bus */
         $bus = $app->make(\Itm\Bus\Bus::class);
 
+        $bus->map(
+            \Meat\Commands\RegisterVisit::class,
+            \Meat\Handlers\RegisterVisit::class
+        );
+
         return $bus;
     }
 );

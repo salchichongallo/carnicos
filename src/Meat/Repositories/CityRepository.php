@@ -13,4 +13,6 @@ interface CityRepository
     public function find(string $city): City;
 
     public function findById(string $id): City;
+
+    public function updateVisits(City $city): bool;
 }
