@@ -13,4 +13,8 @@ abstract class Table
     public const CITIES = 'ciudades';
 
     public const NEIGHBORHOODS = 'barrios';
+
+    public const USERS = 'usuarios';
+
+    public const ROLES = 'roles';
 }

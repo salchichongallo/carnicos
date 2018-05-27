@@ -24,6 +24,10 @@ class DatabaseSeeder implements Seeder
         $this->call(CitiesTableSeeder::class);
 
         $this->call(NeighborhoodsTableSeeder::class);
+
+        $this->call(RolesTableSeeder::class);
+
+        $this->call(UsersTableSeeder::class);
     }
 
     protected function call($seeder)

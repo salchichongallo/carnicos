@@ -19,3 +19,13 @@ $app->bind(
     \Meat\Repositories\NeighborhoodRepository::class,
     \App\Repositories\NeighborhoodRepository::class
 );
+
+$app->bind(
+    \Meat\Repositories\RoleRepository::class,
+    \App\Repositories\RoleRepository::class
+);
+
+$app->bind(
+    \Meat\Repositories\UserRepository::class,
+    \App\Repositories\UserRepository::class
+);
