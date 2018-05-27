@@ -9,6 +9,7 @@ $app->singleton(
 
 require_once __DIR__.'/views.php';
 require_once __DIR__.'/database.php';
+require_once __DIR__.'/services.php';
 require_once __DIR__.'/repositories.php';
 
 return $app;

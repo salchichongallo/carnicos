@@ -2,7 +2,7 @@
 
 use Itm\Http\RedirectResponse;
 use Itm\Foundation\Application;
-use Illuminate\Support\Collection;
+use Itm\Contracts\Hashing\Hasher;
 use Itm\Contracts\View\ViewFactory;
 use Itm\Session\{Session, CookieSession};
 
@@ -39,6 +39,7 @@ function redirect(string $path)
 
 function session($key = null)
 {
+    /** @var Session $session */
     $session = app(Session::class);
 
     if (is_null($key)) {
@@ -50,6 +51,7 @@ function session($key = null)
 
 function cookie($key = null)
 {
+    /** @var CookieSession $cookie */
     $cookie = app(CookieSession::class);
 
     if (is_null($key)) {
@@ -57,4 +59,12 @@ function cookie($key = null)
     }
 
     return $cookie->get($key);
+}
+
+function bcrypt($value)
+{
+    /** @var Hasher $hasher */
+    $hasher = app(Hasher::class);
+
+    return $hasher->make($value);
 }
