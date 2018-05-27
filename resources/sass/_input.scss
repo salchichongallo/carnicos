@@ -1,0 +1,18 @@
+.input {
+  outline: none;
+  padding: .5em;
+  min-width: 250px;
+  border-radius: 3px;
+  border: 1px solid $text-color;
+
+  font-size: 1em;
+  font-family: $primary-font;
+
+  transition: box-shadow 125ms ease-in-out;
+
+  &:active,
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, .6);
+  }
+}
