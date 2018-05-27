@@ -9,4 +9,8 @@ interface CityRepository
     public function all();
 
     public function add(City $city): bool;
+
+    public function find(string $city): City;
+
+    public function findById(string $id): City;
 }

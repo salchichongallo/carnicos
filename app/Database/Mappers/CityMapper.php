@@ -8,7 +8,7 @@ use App\Database\Mapper;
 
 class CityMapper implements Mapper
 {
-    public function forTable(City $city): array
+    public function toTable(City $city): array
     {
         return [
             'id' => $city->getId(),

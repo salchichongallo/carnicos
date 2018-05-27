@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Exception;
 use Meat\Street\City;
 use App\Database\Table;
 use App\Database\Mappers\CityMapper;
@@ -26,10 +27,36 @@ class CityRepository implements CityRepositoryContract
         $this->mapper = $mapper;
     }
 
+    public function findById(string $id): City
+    {
+        $city = $this->db->table(Table::CITIES)
+            ->where('id', '=', $id)
+            ->first();
+
+        if (! $city) {
+            throw new Exception("City with id [{$id}] not found.");
+        }
+
+        return $this->mapper->fromTable($city);
+    }
+
+    public function find(string $city): City
+    {
+        $result = $this->db->table(Table::CITIES)
+            ->where('nombre', '=', $city)
+            ->first();
+
+        if (! $result) {
+            throw new Exception("City [{$city}] not found.");
+        }
+
+        return $this->mapper->fromTable($result);
+    }
+
     public function add(City $city): bool
     {
         return $this->db->table(Table::CITIES)
-            ->insert($this->mapper->forTable(
+            ->insert($this->mapper->toTable(
                 $city
             ));
     }
