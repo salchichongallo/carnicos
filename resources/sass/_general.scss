@@ -21,8 +21,12 @@ body {
   text-align: center;
 }
 
-.app-main {
+.app-full {
   flex: 1;
+}
+
+.app-main {
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
 
@@ -53,5 +57,23 @@ body {
     display: flex;
     margin-bottom: 1em;
     justify-content: center;
+  }
+}
+
+.page-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > .alert {
+    margin-bottom: 20px;
+  }
+
+  &__form {
+    max-width: 250px;
+
+    > * { margin-bottom: 1.5em; }
+
+    > .btn { margin: 20px 0 0 0; }
   }
 }
