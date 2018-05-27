@@ -1,3 +1,10 @@
 .icon {
   color: rgba($black, .54);
+
+  &--hover {
+    padding: 8px;
+
+    cursor: pointer;
+    &:hover { color: rgba($black, .64); }
+  }
 }

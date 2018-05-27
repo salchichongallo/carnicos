@@ -1,0 +1,30 @@
+.alert {
+  padding: .5em;
+  font-size: 1em;
+
+  border: 1px solid;
+  border-radius: 3px;
+  border-left-width: 10px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &--warn { border-color: $amber-500; }
+
+  &--error { border-color: $red-500; }
+
+  &--info { border-color: $blue-a400; }
+
+  &--success { border-color: $green-500; }
+
+  &__close {
+    margin-left: .5em;
+  }
+
+  > p {
+    margin: 0;
+    display: inline;
+    font-size: inherit;
+  }
+}
