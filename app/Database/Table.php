@@ -11,4 +11,6 @@ abstract class Table
     public const PRESENTATIONS = 'presentaciones';
 
     public const CITIES = 'ciudades';
+
+    public const NEIGHBORHOODS = 'barrios';
 }
