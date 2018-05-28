@@ -2,6 +2,8 @@
 
 namespace Meat\Store;
 
+use Meat\User;
+
 class ShopKeeper
 {
     /**
@@ -10,29 +12,14 @@ class ShopKeeper
     protected $id;
 
     /**
-     * @var string
+     * @var SalePoint
      */
-    protected $name;
+    protected $salePoint;
 
     /**
-     * @var string
+     * @var User
      */
-    protected $city;
-
-    /**
-     * @var string
-     */
-    protected $neighborhood;
-
-    /**
-     * @var string
-     */
-    protected $direction;
-
-    /**
-     * @var string
-     */
-    protected $phone;
+    protected $user;
 
     /**
      * @return string
@@ -43,7 +30,8 @@ class ShopKeeper
     }
 
     /**
-     * @param string $id
+     * @param  string $id
+     * @return void
      */
     public function setId(string $id): void
     {
@@ -51,82 +39,36 @@ class ShopKeeper
     }
 
     /**
-     * @return string
+     * @return SalePoint
      */
-    public function getName()
+    public function getSalePoint()
     {
-        return $this->name;
+        return $this->salePoint;
     }
 
     /**
-     * @param string $name
+     * @param  SalePoint $salePoint
+     * @return void
      */
-    public function setName(string $name): void
+    public function setSalePoint(SalePoint $salePoint): void
     {
-        $this->name = $name;
+        $this->salePoint = $salePoint;
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getCity()
+    public function getUser()
     {
-        return $this->city;
+        return $this->user;
     }
 
     /**
-     * @param string $city
+     * @param  User $user
+     * @return void
      */
-    public function setCity(string $city): void
+    public function setUser(User $user): void
     {
-        $this->city = $city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNeighborhood()
-    {
-        return $this->neighborhood;
-    }
-
-    /**
-     * @param string $neighborhood
-     */
-    public function setNeighborhood(string $neighborhood): void
-    {
-        $this->neighborhood = $neighborhood;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDirection()
-    {
-        return $this->direction;
-    }
-
-    /**
-     * @param string $direction
-     */
-    public function setDirection(string $direction): void
-    {
-        $this->direction = $direction;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param string $phone
-     */
-    public function setPhone(string $phone): void
-    {
-        $this->phone = $phone;
+        $this->user = $user;
     }
 }

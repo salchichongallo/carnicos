@@ -6,6 +6,8 @@ class Role
 {
     public const ADMIN = 'Admin';
 
+    public const SHOP_KEEPER = 'Shop Keeper';
+
     /**
      * @var string
      */
@@ -15,6 +17,15 @@ class Role
      * @var string
      */
     protected $description;
+
+    public static function create(string $name): self
+    {
+        $role = new self;
+
+        $role->name = $name;
+
+        return $role;
+    }
 
     public function getName()
     {

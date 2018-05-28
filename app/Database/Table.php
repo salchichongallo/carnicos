@@ -19,4 +19,8 @@ abstract class Table
     public const USERS = 'usuarios';
 
     public const ROLES = 'roles';
+
+    public const SALE_POINTS = 'punto_ventas';
+
+    public const SHOP_KEEPERS = 'tenderos';
 }

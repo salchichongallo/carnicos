@@ -45,10 +45,13 @@ class PresentationRepository implements PresentationRepositoryContract
 
     public function add(Presentation $presentation): bool
     {
-        return $this->db
-            ->table(Table::PRESENTATIONS)
-            ->insert($this->mapper->toTable(
+        $id = $this->db->table(Table::PRESENTATIONS)
+            ->insertGetId($this->mapper->toTable(
                 $presentation
             ));
+
+        $presentation->setId($id);
+
+        return true;
     }
 }

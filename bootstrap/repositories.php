@@ -29,3 +29,13 @@ $app->bind(
     \Meat\Repositories\UserRepository::class,
     \App\Repositories\UserRepository::class
 );
+
+$app->bind(
+    \Meat\Repositories\ShopKeeperRepository::class,
+    \App\Repositories\ShopKeeperRepository::class
+);
+
+$app->bind(
+    \Meat\Repositories\SalePointRepository::class,
+    \App\Repositories\SalePointRepository::class
+);

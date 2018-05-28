@@ -26,6 +26,21 @@ $app->singleton(
             \Meat\Handlers\CountLogin::class
         );
 
+        $bus->map(
+            \Meat\Commands\CreateSalePoint::class,
+            \Meat\Handlers\CreateSalePoint::class
+        );
+
+        $bus->map(
+            \Meat\Commands\CreateUser::class,
+            \Meat\Handlers\CreateUser::class
+        );
+
+        $bus->map(
+            \Meat\Commands\RegisterShopKeeper::class,
+            \Meat\Handlers\RegisterShopKeeper::class
+        );
+
         return $bus;
     }
 );

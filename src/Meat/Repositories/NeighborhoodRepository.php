@@ -6,6 +6,8 @@ use Meat\Street\Neighborhood;
 
 interface NeighborhoodRepository
 {
+    public function all();
+
     public function find(string $id): Neighborhood;
 
     public function add(Neighborhood $neighborhood): bool;

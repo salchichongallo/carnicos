@@ -16,6 +16,7 @@ $app->singleton(
             ->register('welcome', 'welcome.php')
             ->register('login', 'auth/login.php')
             ->register('register', 'auth/register.php')
+            ->register('create_sale_point', 'create_sale_point.php')
             ->register('promotions', 'promotions.php')
             ->register('404', 'errors/404.php');
     }

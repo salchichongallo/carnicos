@@ -38,6 +38,22 @@ class NeighborhoodRepository implements NeighborhoodRepositoryContract
         $this->cityRepository = $cityRepository;
     }
 
+    public function all()
+    {
+        $neighborhoods = $this->db->table(Table::NEIGHBORHOODS)->get();
+
+        return collect($neighborhoods)->map(function ($result) {
+            $neighborhood = $this->mapper->fromTable($result);
+
+            $neighborhood->setCity(
+                $this->cityRepository->findById($result->ciudad_id)
+            );
+
+            return $neighborhood;
+
+        })->toArray();
+    }
+
     public function find(string $id): Neighborhood
     {
         $result = $this->db->table(Table::NEIGHBORHOODS)
@@ -78,9 +94,13 @@ class NeighborhoodRepository implements NeighborhoodRepositoryContract
 
     public function add(Neighborhood $neighborhood): bool
     {
-        return $this->db->table(Table::NEIGHBORHOODS)
-            ->insert($this->mapper->toTable(
+        $id = $this->db->table(Table::NEIGHBORHOODS)
+            ->insertGetId($this->mapper->toTable(
                 $neighborhood
             ));
+
+        $neighborhood->setId($id);
+
+        return true;
     }
 }

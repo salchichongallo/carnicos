@@ -76,10 +76,14 @@ class CityRepository implements CityRepositoryContract
 
     public function add(City $city): bool
     {
-        return $this->db->table(Table::CITIES)
-            ->insert($this->mapper->toTable(
+        $id = $this->db->table(Table::CITIES)
+            ->insertGetId($this->mapper->toTable(
                 $city
             ));
+
+        $city->setId($id);
+
+        return true;
     }
 
     public function all()

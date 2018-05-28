@@ -48,10 +48,14 @@ class UserRepository implements UserRepositoryContract
 
     public function add(User $user): bool
     {
-        return $this->db->table(Table::USERS)
-            ->insert($this->mapper->toTable(
+        $id = $this->db->table(Table::USERS)
+            ->insertGetId($this->mapper->toTable(
                 $user
             ));
+
+        $user->setId($id);
+
+        return true;
     }
 
     public function find(string $id): User

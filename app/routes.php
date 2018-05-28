@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     AdminController,
     WelcomeController,
     PromotionController,
+    SalePointController,
     Auth\LoginController,
     Auth\RegisterController
 };
@@ -13,14 +14,17 @@ $router = app('router');
 $router->get('init', AdminController::class)->initApp();
 
 $router->get('bienvenido', WelcomeController::class)->showWelcome();
-$router->post('bienvenido', WelcomeController::class)->changeCity();
+$router->post('cambiar_ciudad', WelcomeController::class)->changeCity();
 
 $router->get('login', LoginController::class)->showLogin();
 $router->post('login', LoginController::class)->login();
 $router->post('logout', LoginController::class)->logout();
 
 $router->get('registro', RegisterController::class)->showRegister();
-$router->post('registro', RegisterController::class)->register();
+$router->post('nuevo_registro', RegisterController::class)->register();
+
+$router->get('nueva_tienda', SalePointController::class)->showCreationForm();
+$router->post('crear_nueva_tienda', SalePointController::class)->create();
 
 $router->get('promociones', PromotionController::class)->showPromotions();
 

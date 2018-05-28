@@ -12,7 +12,7 @@
                 <main class="app-content-wrapper__content">
                     <section id="app-modal" class="modal modal--opened">
                         <div class="modal__container">
-                            <form method="POST" action="?menu=bienvenido" class="modal__content">
+                            <form method="POST" action="?menu=cambiar_ciudad" class="modal__content">
                                 <h1 class="modal__title">¡Bienvenido!</h1>
 
                                 <p>Selecciona tu ciudad para continuar:</p>
