@@ -29,6 +29,8 @@ class RolesTableSeeder implements Seeder
     public function run(): void
     {
         $this->seed(Role::ADMIN, 'Administrador');
+
+        $this->seed(Role::SHOP_KEEPER, 'Tendero');
     }
 
     protected function seed(string $name, $description = null)
