@@ -41,6 +41,11 @@ $app->singleton(
             \Meat\Handlers\RegisterShopKeeper::class
         );
 
+        $bus->map(
+            \Meat\Commands\CreateProduct::class,
+            \Meat\Handlers\CreateProduct::class
+        );
+
         return $bus;
     }
 );

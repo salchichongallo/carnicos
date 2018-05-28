@@ -11,7 +11,7 @@ class PresentationMapper implements Mapper
     public function toTable(Presentation $presentation): array
     {
         return [
-            'id' => $presentation->getId(),
+            'presentacion' => $presentation->getId(),
             'descripcion' => $presentation->getDescription(),
         ];
     }
@@ -20,19 +20,9 @@ class PresentationMapper implements Mapper
     {
         $presentation = new Presentation;
 
-        $presentation->setId($table->id);
+        $presentation->setId($table->presentacion);
         $presentation->setDescription($table->descripcion);
 
         return $presentation;
-    }
-
-    public function fromProduct(stdClass $product): Presentation
-    {
-        $table = new stdClass;
-
-        $table->id = $product->presentacion_id;
-        $table->descripcion = $product->presentacion_descripcion;
-
-        return $this->fromTable($table);
     }
 }

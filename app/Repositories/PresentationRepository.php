@@ -27,31 +27,32 @@ class PresentationRepository implements PresentationRepositoryContract
         $this->mapper = $mapper;
     }
 
-    /**
-     * @param string $id
-     * @return Presentation
-     * @throws Exception
-     */
-    public function find(string $id): Presentation
+    public function find(string $presentation): Presentation
     {
-        $presentation = $this->db->table(Table::PRESENTATIONS)->find($id);
+        $result = $this->db->table(Table::PRESENTATIONS)
+            ->where('presentacion', '=', $presentation)
+            ->first();
 
-        if (! $presentation) {
-            throw new Exception("Presentation [{$id}] not found.");
+        if (! $result) {
+            throw new Exception("Presentation [{$presentation}] not found.");
         }
 
-        return $this->mapper->fromTable($presentation);
+        return $this->mapper->fromTable($result);
     }
 
     public function add(Presentation $presentation): bool
     {
-        $id = $this->db->table(Table::PRESENTATIONS)
-            ->insertGetId($this->mapper->toTable(
+        return $this->db->table(Table::PRESENTATIONS)
+            ->insert($this->mapper->toTable(
                 $presentation
             ));
+    }
 
-        $presentation->setId($id);
-
-        return true;
+    public function exists(string $presentation): bool
+    {
+        return $this->db->table(Table::PRESENTATIONS)
+            ->where('presentacion', '=', $presentation)
+            ->limit(1)
+            ->exists();
     }
 }
