@@ -18,8 +18,7 @@ class UserMapper implements Mapper
             'direccion' => $user->getAddress(),
             'telefono' => $user->getPhone(),
             'total_login' => $user->getTotalLogin(),
-            // TODO:
-            // 'ultimo_ingreso' => $user->getLastVisit(),
+            'ultimo_ingreso' => $user->getLastVisit()->getTimestamp(),
             'rol' => $user->getRole()->getName(),
             'barrio_id' => $user->getNeighborhood()->getId(),
         ];
@@ -37,8 +36,10 @@ class UserMapper implements Mapper
         $user->setPhone($table->telefono);
         $user->setTotalLogin($table->total_login);
 
-       // TODO:
-       // $user->setLastVisit();
+        if (! is_null($table->ultimo_ingreso)) {
+            $timestamp = strtotime($table->ultimo_ingreso);
+            $user->setLastVisit(new \DateTime($timestamp));
+        }
 
         return $user;
     }

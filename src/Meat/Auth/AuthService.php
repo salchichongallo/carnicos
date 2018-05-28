@@ -68,7 +68,7 @@ class AuthService implements AuthServiceContract
         return $this->app->bound(User::class);
     }
 
-    public function user()
+    public function user():? User
     {
         return $this->app->make(User::class);
     }

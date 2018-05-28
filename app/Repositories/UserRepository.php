@@ -105,4 +105,11 @@ class UserRepository implements UserRepositoryContract
 
         return $result !== 0;
     }
+
+    public function updateVisit(User $user)
+    {
+        return $this->db->table(Table::USERS)
+            ->where('id', '=', $user->getId())
+            ->update([ 'ultimo_ingreso' => $user->getLastVisit() ]);
+    }
 }

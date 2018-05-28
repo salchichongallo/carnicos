@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use Itm\Http\Request;
-use Meat\Commands\CountLogin;
 use Meat\Middleware\CheckAuth;
+use Meat\Commands\RegisterLogin;
 use Meat\Contracts\Auth\AuthService;
 use App\Http\Controllers\Controller;
+use Meat\Commands\UpdateLastVisitUser;
 use Meat\Middleware\RedirectIfAuthenticated;
 
 class LoginController extends Controller
@@ -27,13 +28,15 @@ class LoginController extends Controller
     {
         $user = $auth->attempt($request->email, $request->password);
 
-        dispatch(new CountLogin($user));
+        dispatch(new RegisterLogin($user));
 
         return redirect('?menu=bienvenido');
     }
 
     public function logout(AuthService $auth)
     {
+        dispatch(new UpdateLastVisitUser($auth->user()));
+
         $auth->forget();
 
         return redirect('?menu=login');

@@ -27,6 +27,16 @@ $app->singleton(
         );
 
         $bus->map(
+            \Meat\Commands\UpdateLastVisitUser::class,
+            \Meat\Handlers\UpdateLastVisitUser::class
+        );
+
+        $bus->map(
+            \Meat\Commands\RegisterLogin::class,
+            \Meat\Handlers\RegisterLogin::class
+        );
+
+        $bus->map(
             \Meat\Commands\CreateSalePoint::class,
             \Meat\Handlers\CreateSalePoint::class
         );
