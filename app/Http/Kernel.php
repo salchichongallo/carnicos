@@ -22,6 +22,7 @@ class Kernel implements KernelContract
 
     protected $middleware = [
         \Meat\Middleware\RegisterVisit::class,
+        \Meat\Middleware\AuthMiddleware::class,
     ];
 
     public function __construct(Application $app, Router $router)

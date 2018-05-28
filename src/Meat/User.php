@@ -58,6 +58,11 @@ class User
      */
     protected $neighborhood;
 
+    public function incrementLogins(int $amount = 1)
+    {
+        $this->totalLogin += $amount;
+    }
+
     /**
      * @return string
      */

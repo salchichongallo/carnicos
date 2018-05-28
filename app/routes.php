@@ -17,6 +17,7 @@ $router->post('bienvenido', WelcomeController::class)->changeCity();
 
 $router->get('login', LoginController::class)->showLogin();
 $router->post('login', LoginController::class)->login();
+$router->post('logout', LoginController::class)->logout();
 
 $router->get('registro', RegisterController::class)->showRegister();
 $router->post('registro', RegisterController::class)->register();

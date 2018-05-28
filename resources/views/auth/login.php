@@ -13,7 +13,7 @@
                     <form action="?menu=login" method="POST" class="page-login__form">
                         <label for="email" class="form-control">
                             <span>Email:</span>
-                            <input name="email" type="email" class="input" id="email" />
+                            <input name="email" type="email" class="input" id="email" placeholder="usuario@carnicos.co" autofocus />
                         </label>
 
                         <label for="password" class="form-control">

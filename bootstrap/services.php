@@ -21,6 +21,11 @@ $app->singleton(
             \Meat\Handlers\RegisterVisit::class
         );
 
+        $bus->map(
+            \Meat\Commands\CountLogin::class,
+            \Meat\Handlers\CountLogin::class
+        );
+
         return $bus;
     }
 );

@@ -4,6 +4,7 @@ use Itm\Http\RedirectResponse;
 use Itm\Foundation\Application;
 use Itm\Contracts\Hashing\Hasher;
 use Itm\Contracts\View\ViewFactory;
+use Meat\Contracts\Auth\AuthService;
 use Itm\Contracts\Bus\{Bus, Command};
 use Itm\Session\{Session, CookieSession};
 
@@ -76,4 +77,12 @@ function dispatch(Command $command)
     $bus = app(Bus::class);
 
     return $bus->dispatch($command);
+}
+
+function auth()
+{
+    /** @var AuthService $auth */
+    $auth = app(AuthService::class);
+
+    return $auth;
 }

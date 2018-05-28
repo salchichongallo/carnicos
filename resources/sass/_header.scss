@@ -13,3 +13,12 @@
   background: url(../images/logo.png) no-repeat center;
   background-size: contain;
 }
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+
+  &__sep {
+    padding: 0 1em;
+  }
+}

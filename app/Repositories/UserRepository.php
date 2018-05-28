@@ -54,16 +54,19 @@ class UserRepository implements UserRepositoryContract
             ));
     }
 
-    public function findByEmail(string $email): User
+    public function find(string $id): User
     {
-        $result = $this->db->table(Table::USERS)
-            ->where('email', '=', $email)
-            ->first();
+        $result = $this->db->table(Table::USERS)->find($id);
 
         if (! $result) {
-            throw new Exception("User with email [{$email}] not found.");
+            throw new Exception("User with id [{$id}] not found.");
         }
 
+        return $this->createUser($result);
+    }
+
+    protected function createUser($result): User
+    {
         $user = $this->mapper->fromTable($result);
 
         $user->setRole(
@@ -75,5 +78,27 @@ class UserRepository implements UserRepositoryContract
         );
 
         return $user;
+    }
+
+    public function findByEmail(string $email): User
+    {
+        $result = $this->db->table(Table::USERS)
+            ->where('email', '=', $email)
+            ->first();
+
+        if (! $result) {
+            throw new Exception("User with email [{$email}] not found.");
+        }
+
+        return $this->createUser($result);
+    }
+
+    public function updateTotalLogins(User $user): bool
+    {
+        $result = $this->db->table(Table::USERS)
+            ->where('id', '=', $user->getId())
+            ->update([ 'total_login' => $user->getTotalLogin() ]);
+
+        return $result !== 0;
     }
 }
