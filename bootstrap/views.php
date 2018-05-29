@@ -21,7 +21,8 @@ $app->singleton(
             ->register('register', 'auth/register.php')
 
             ->register('create_sale_point', 'create_sale_point.php')
-            ->register('promotions', 'promotions.php')
+
+            ->register('promotions.show', 'promotions/show.php')
 
             ->register('orders.create', 'orders/create.php')
 

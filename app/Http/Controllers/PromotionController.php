@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Itm\Session\Session;
-use App\Database\Seeds\DatabaseSeeder;
+use Itm\Session\CookieSession as Cookie;
+use Meat\Repositories\PromotionRepository;
 
 class PromotionController extends Controller
 {
-    public function showPromotions(DatabaseSeeder $databaseSeeder, Session $session)
+    public function showPromotions(PromotionRepository $repository, Cookie $cookie)
     {
-        // TODO: Use repository.
-        $promotions = [];
+        if (! $cookie->has('city')) {
+            return redirect('?menu=bienvenido');
+        }
 
-        return view('promotions', compact('promotions'));
+        $products = $repository->findByCity($cookie->get('city'));
+
+        return view('promotions.show', compact('products'));
     }
 }

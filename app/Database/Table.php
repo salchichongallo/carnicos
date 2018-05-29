@@ -31,4 +31,6 @@ abstract class Table
     public const STOCKS = 'stocks';
 
     public const CLIENTS = 'clientes';
+
+    public const PROMOTIONS = 'promociones';
 }

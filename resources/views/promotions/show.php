@@ -16,6 +16,14 @@
                             <?php echo escape(cookie('city')); ?>
                         </b>
                     </h1>
+
+                    <div class="products">
+                        <?php
+                            foreach ($products as $product) {
+                                partial('product', compact('product'));
+                            }
+                        ?>
+                    </div>
                 </main>
             </div>
         </div>

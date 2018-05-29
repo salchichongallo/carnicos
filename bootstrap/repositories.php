@@ -49,3 +49,8 @@ $app->bind(
     \Meat\Repositories\ClientRepository::class,
     \App\Repositories\ClientRepository::class
 );
+
+$app->bind(
+    \Meat\Repositories\PromotionRepository::class,
+    \App\Repositories\PromotionRepository::class
+);
