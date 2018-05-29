@@ -1,7 +1,15 @@
 <header>
     <div class="container app-header">
-        <a href="?menu=bienvenido" class="app-logo">
-        </a>
+        <div class="app-header__title">
+            <a href="?menu=bienvenido" class="app-logo">
+            </a>
+            <?php if (cookie()->has('city')) { ?>
+                <i class="icon">chevron_right</i>
+                <span class="app-header__city">
+                    <?php echo escape(cookie('city')); ?>
+                </span>
+            <?php } ?>
+        </div>
 
         <?php if (auth()->check()) {
             $user = auth()->user();

@@ -10,7 +10,7 @@ $app->singleton(
         return $app->make(\Itm\View\ViewFactory::class)
             ->register('head', 'partials/head.php')
             ->register('header', 'partials/header.php')
-            ->register('nav', 'partials/nav.php')
+            ->register('sidebar', 'partials/sidebar.php')
             ->register('footer', 'partials/footer.php')
             ->register('message', 'partials/message.php')
             ->register('product', 'partials/product.php')

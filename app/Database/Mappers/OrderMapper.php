@@ -28,8 +28,9 @@ class OrderMapper implements Mapper
         $order->setCode($table->numero);
         $order->setState($table->estado);
 
-        $timestamp = strtotime($table->fecha);
-        $order->setDate(new DateTime($timestamp));
+        $date = new DateTime;
+        $date->setTimestamp(strtotime($table->fecha));
+        $order->setDate($date);
 
         $salePoint = new SalePoint;
         $salePoint->setId($table->punto_venta_id);

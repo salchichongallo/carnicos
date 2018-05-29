@@ -6,7 +6,7 @@
 
     <div class="container app-full">
         <div class="container app-main">
-            <?php partial('nav'); ?>
+            <?php partial('sidebar'); ?>
 
             <div class="app-content-wrapper">
                 <main class="app-content-wrapper__content t-center">

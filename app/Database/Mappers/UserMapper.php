@@ -38,8 +38,9 @@ class UserMapper implements Mapper
         $user->setTotalLogin($table->total_login);
 
         if (! is_null($table->ultimo_ingreso)) {
-            $timestamp = strtotime($table->ultimo_ingreso);
-            $user->setLastVisit(new DateTime($timestamp));
+            $lastVisit = new DateTime;
+            $lastVisit->setTimestamp(strtotime($table->ultimo_ingreso));
+            $user->setLastVisit($lastVisit);
         }
 
         return $user;

@@ -4,11 +4,23 @@
   justify-content: space-between;
 
   padding-top: 33px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    > .icon { padding: 0 8px; }
+  }
+
+  &__city {
+    font-size: 20px;
+  }
 }
 
 .app-logo {
   width: 150px;
   height: 40px;
+  display: inline-block;
 
   background: url(../images/logo.png) no-repeat center;
   background-size: contain;
