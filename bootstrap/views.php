@@ -25,6 +25,8 @@ $app->singleton(
 
             ->register('orders.create', 'orders/create.php')
 
+            ->register('clients.create', 'clients/create.php')
+
             ->register('404', 'errors/404.php');
     }
 );

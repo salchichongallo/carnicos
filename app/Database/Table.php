@@ -29,4 +29,6 @@ abstract class Table
     public const ORDER_PRODUCTS = 'pedidos_productos';
 
     public const STOCKS = 'stocks';
+
+    public const CLIENTS = 'clientes';
 }

@@ -44,3 +44,8 @@ $app->bind(
   \Meat\Repositories\OrderRepository::class,
   \App\Repositories\OrderRepository::class
 );
+
+$app->bind(
+    \Meat\Repositories\ClientRepository::class,
+    \App\Repositories\ClientRepository::class
+);

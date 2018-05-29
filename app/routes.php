@@ -3,6 +3,7 @@
 use App\Http\Controllers\{
     AdminController,
     OrderController,
+    ClientController,
     WelcomeController,
     PromotionController,
     SalePointController,
@@ -31,6 +32,9 @@ $router->get('promociones', PromotionController::class)->showPromotions();
 
 $router->get('realizar_pedido', OrderController::class)->showForm();
 $router->post('nuevo_pedido', OrderController::class)->makeOrder();
+
+$router->get('registrar_cliente', ClientController::class)->showRegisterForm();
+$router->post('nuevo_cliente', ClientController::class)->create();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();

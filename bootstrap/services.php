@@ -66,6 +66,11 @@ $app->singleton(
             \Meat\Handlers\ReceiveOrder::class
         );
 
+        $bus->map(
+            \Meat\Commands\RegisterClient::class,
+            \Meat\Handlers\RegisterClient::class
+        );
+
         return $bus;
     }
 );
