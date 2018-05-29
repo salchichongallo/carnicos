@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     AdminController,
+    OrderController,
     WelcomeController,
     PromotionController,
     SalePointController,
@@ -27,6 +28,9 @@ $router->get('nueva_tienda', SalePointController::class)->showCreationForm();
 $router->post('crear_nueva_tienda', SalePointController::class)->create();
 
 $router->get('promociones', PromotionController::class)->showPromotions();
+
+$router->get('realizar_pedido', OrderController::class)->showForm();
+$router->post('nuevo_pedido', OrderController::class)->makeOrder();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();

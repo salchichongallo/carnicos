@@ -4,11 +4,11 @@ namespace App\Repositories;
 
 use Exception;
 use App\Database\Table;
-use Meat\Product\Presentation;
 use Meat\Product\Product;
+use Meat\Product\Presentation;
 use App\Database\Mappers\ProductMapper;
-use Illuminate\Database\ConnectionInterface as Connection;
 use Meat\Repositories\PresentationRepository;
+use Illuminate\Database\ConnectionInterface as Connection;
 use Meat\Repositories\ProductRepository as ProductRepositoryContract;
 
 class ProductRepository implements ProductRepositoryContract
@@ -66,21 +66,39 @@ class ProductRepository implements ProductRepositoryContract
      */
     public function find(string $code): Product
     {
-        $result = $this->db->table(Table::VIEW_PRODUCTS)
-            ->where('codigo', '=', $code)->first();
+        $result = $this->db->table(Table::PRODUCTS)
+            ->where('codigo', '=', $code)
+            ->first();
 
         if (! $result) {
             throw new Exception("Product [{$code}] not found.");
         }
 
-        $product = $this->mapper->fromView($result);
+        $product = $this->mapper->fromTable($result);
 
         $presentation = $this->presentationRepository->find(
-            $product->getPresentation()->getId()
+            $result->presentacion
         );
 
         $product->setPresentation($presentation);
 
         return $product;
+    }
+
+    public function all()
+    {
+        $products = $this->db->table(Table::PRODUCTS)->get();
+
+        return collect($products)->map(function ($result) {
+            $product = $this->mapper->fromTable($result);
+
+            $presentation = $this->presentationRepository->find(
+                $result->presentacion
+            );
+
+            $product->setPresentation($presentation);
+
+            return $product;
+        })->toArray();
     }
 }

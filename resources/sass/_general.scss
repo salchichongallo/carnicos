@@ -87,3 +87,27 @@ body {
     > .btn { margin: 20px 0 0 0; }
   }
 }
+
+.page-order {
+  .alert {
+    margin-bottom: 1.5em;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-control {
+    margin: 0 auto 1.5em auto;
+  }
+
+  &__form > .products {
+    margin-bottom: 1.5em;
+  }
+
+  &__form .btn {
+    max-width: 250px;
+  }
+}

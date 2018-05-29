@@ -5,4 +5,16 @@
     display: block;
     padding-bottom: 8px;
   }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: rgba($black, .4);
+
+    > span,
+    > input {
+      color: currentColor;
+      pointer-events: none;
+      border-color: currentColor;
+    }
+  }
 }

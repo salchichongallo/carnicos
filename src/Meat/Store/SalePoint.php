@@ -2,7 +2,9 @@
 
 namespace Meat\Store;
 
+use Meat\Order\Order;
 use Meat\Street\City;
+use Meat\Order\OrderProduct;
 
 class SalePoint
 {
@@ -30,6 +32,49 @@ class SalePoint
      * @var City
      */
     protected $city;
+
+    /**
+     * @var Warehouse
+     */
+    protected $warehouse;
+
+    public function requestOrder(Order $order)
+    {
+        $order->setSalePoint($this);
+
+        $order->dispatch();
+    }
+
+    public function receiveOrder(Order $order)
+    {
+        $order->setSalePoint($this);
+
+        $order->deliver();
+
+        $this->receiveOrderProducts($order->getProducts());
+    }
+
+    /**
+     * @param OrderProduct[] $products
+     */
+    protected function receiveOrderProducts(array $products)
+    {
+        foreach ($products as $product) {
+            $this->addToWarehouse($product);
+        }
+    }
+
+    protected function addToWarehouse(OrderProduct $orderProduct)
+    {
+        $stock = new StockProduct;
+
+        $stock->setSalePoint($this);
+
+        $stock->setStock($orderProduct->getQuantity());
+        $stock->setProduct($orderProduct->getProduct());
+
+        $this->warehouse->add($stock);
+    }
 
     /**
      * @return string
@@ -109,5 +154,21 @@ class SalePoint
     public function setCity(City $city): void
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return Warehouse
+     */
+    public function getWarehouse()
+    {
+        return $this->warehouse;
+    }
+
+    /**
+     * @param Warehouse $warehouse
+     */
+    public function setWarehouse(Warehouse $warehouse): void
+    {
+        $this->warehouse = $warehouse;
     }
 }

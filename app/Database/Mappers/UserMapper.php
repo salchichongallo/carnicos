@@ -3,6 +3,7 @@
 namespace App\Database\Mappers;
 
 use stdClass;
+use DateTime;
 use Meat\User;
 use App\Database\Mapper;
 
@@ -18,7 +19,7 @@ class UserMapper implements Mapper
             'direccion' => $user->getAddress(),
             'telefono' => $user->getPhone(),
             'total_login' => $user->getTotalLogin(),
-            'ultimo_ingreso' => $user->getLastVisit()->getTimestamp(),
+            'ultimo_ingreso' => $user->getLastVisit(),
             'rol' => $user->getRole()->getName(),
             'barrio_id' => $user->getNeighborhood()->getId(),
         ];
@@ -38,7 +39,7 @@ class UserMapper implements Mapper
 
         if (! is_null($table->ultimo_ingreso)) {
             $timestamp = strtotime($table->ultimo_ingreso);
-            $user->setLastVisit(new \DateTime($timestamp));
+            $user->setLastVisit(new DateTime($timestamp));
         }
 
         return $user;

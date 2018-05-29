@@ -2,14 +2,15 @@
 
 namespace App\Database\Seeds;
 
+use DateTime;
+use Meat\User;
+use Meat\Role\Role;
+use Itm\Contracts\Database\Seeder;
 use App\Database\Mappers\UserMapper;
 use Meat\Repositories\CityRepository;
-use Meat\Repositories\NeighborhoodRepository;
 use Meat\Repositories\RoleRepository;
-use Meat\Role\Role;
-use Meat\User;
-use Itm\Contracts\Database\Seeder;
 use Meat\Repositories\UserRepository;
+use Meat\Repositories\NeighborhoodRepository;
 
 class UsersTableSeeder implements Seeder
 {
@@ -67,6 +68,8 @@ class UsersTableSeeder implements Seeder
         $admin->setPassword(bcrypt('secret'));
         $admin->setAddress('King\'s Cross Station');
         $admin->setPhone('123 45 67');
+
+        $admin->setLastVisit(new DateTime);
 
         $admin->setRole(
             $this->roleRepository->find(Role::ADMIN)

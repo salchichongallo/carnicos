@@ -19,6 +19,10 @@ class DatabaseSeeder implements Seeder
 
     public function run(): void
     {
+        auth()->forget();
+
+        cookie()->destroy('city');
+
         $this->call(CreateDatabaseSeeder::class);
 
         $this->call(ProductsTableSeeder::class);

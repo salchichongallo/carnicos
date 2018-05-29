@@ -2,29 +2,39 @@
 
 namespace Meat\Store;
 
+use Exception;
 use Meat\Product\Product;
 
 class StockProduct
 {
+    protected const MIN_ALLOWED = 10;
+
     /**
      * @var int
      */
     protected $stock;
 
     /**
-     * @var int
-     */
-    protected $originalStock;
-
-    /**
      * @var Product
      */
     protected $product;
 
-    public function isOutOfStock(): bool
+    /**
+     * @var SalePoint
+     */
+    protected $salePoint;
+
+    public function needsReorder(int $orderStock): bool
     {
-        // TODO:
-        return false;
+        if ($this->stock > $orderStock) {
+            throw new Exception("Order stock [{$orderStock}] not valid.");
+        }
+
+        if ($orderStock === 0) {
+            $orderStock = 1;
+        }
+
+        return ($this->stock * 100 / $orderStock) < self::MIN_ALLOWED;
     }
 
     /**
@@ -44,22 +54,6 @@ class StockProduct
     }
 
     /**
-     * @return int
-     */
-    public function getOriginalStock()
-    {
-        return $this->originalStock;
-    }
-
-    /**
-     * @param int $originalStock
-     */
-    public function setOriginalStock(int $originalStock): void
-    {
-        $this->originalStock = $originalStock;
-    }
-
-    /**
      * @return Product
      */
     public function getProduct()
@@ -73,5 +67,21 @@ class StockProduct
     public function setProduct(Product $product): void
     {
         $this->product = $product;
+    }
+
+    /**
+     * @return SalePoint
+     */
+    public function getSalePoint()
+    {
+        return $this->salePoint;
+    }
+
+    /**
+     * @param SalePoint $salePoint
+     */
+    public function setSalePoint(SalePoint $salePoint): void
+    {
+        $this->salePoint = $salePoint;
     }
 }

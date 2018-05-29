@@ -56,6 +56,16 @@ $app->singleton(
             \Meat\Handlers\CreateProduct::class
         );
 
+        $bus->map(
+            \Meat\Commands\MakeOrder::class,
+            \Meat\Handlers\MakeOrder::class
+        );
+
+        $bus->map(
+            \Meat\Commands\ReceiveOrder::class,
+            \Meat\Handlers\ReceiveOrder::class
+        );
+
         return $bus;
     }
 );

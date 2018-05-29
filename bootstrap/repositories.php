@@ -39,3 +39,8 @@ $app->bind(
     \Meat\Repositories\SalePointRepository::class,
     \App\Repositories\SalePointRepository::class
 );
+
+$app->bind(
+  \Meat\Repositories\OrderRepository::class,
+  \App\Repositories\OrderRepository::class
+);

@@ -18,7 +18,7 @@ class ProductMapper implements Mapper
         ];
     }
 
-    public function fromView(stdClass $table): Product
+    public function fromTable(stdClass $table): Product
     {
         $product = new Product;
 

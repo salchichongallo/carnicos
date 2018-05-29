@@ -10,7 +10,7 @@ class Presentation
     protected $id;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $description;
 
@@ -39,9 +39,9 @@ class Presentation
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription($description): void
     {
         $this->description = $description;
     }

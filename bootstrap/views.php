@@ -13,11 +13,18 @@ $app->singleton(
             ->register('nav', 'partials/nav.php')
             ->register('footer', 'partials/footer.php')
             ->register('message', 'partials/message.php')
+            ->register('product', 'partials/product.php')
+
             ->register('welcome', 'welcome.php')
+
             ->register('login', 'auth/login.php')
             ->register('register', 'auth/register.php')
+
             ->register('create_sale_point', 'create_sale_point.php')
             ->register('promotions', 'promotions.php')
+
+            ->register('orders.create', 'orders/create.php')
+
             ->register('404', 'errors/404.php');
     }
 );

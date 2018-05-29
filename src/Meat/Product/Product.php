@@ -17,7 +17,7 @@ class Product
     /**
      * @var float
      */
-    protected $price;
+    protected $price = 0;
 
     /**
      * @var Presentation
