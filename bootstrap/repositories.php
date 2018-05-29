@@ -54,3 +54,13 @@ $app->bind(
     \Meat\Repositories\PromotionRepository::class,
     \App\Repositories\PromotionRepository::class
 );
+
+$app->bind(
+    \Meat\Repositories\SaleProductRepository::class,
+    \App\Repositories\SaleProductRepository::class
+);
+
+$app->bind(
+    \Meat\Repositories\SaleRepository::class,
+    \App\Repositories\SaleRepository::class
+);

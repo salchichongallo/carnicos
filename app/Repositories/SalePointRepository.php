@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Exception;
 use App\Database\Table;
 use Meat\Store\SalePoint;
+use Meat\Sale\SaleProduct;
 use Meat\Store\StockProduct;
 use Meat\Repositories\CityRepository;
 use App\Database\Mappers\SalePointMapper;
@@ -62,9 +63,23 @@ class SalePointRepository implements SalePointRepositoryContract
             ));
     }
 
-    public function findByShopKeeper(string $userId)
+    public function find(string $id): SalePoint
     {
-        $result = $this->db->table(Table::VIEW_SHOP_KEEPER_SALE_POINTS)
+        $salePoint = $this->db
+            ->table(Table::SALE_POINTS)
+            ->find($id);
+
+        if (! $salePoint) {
+            throw new Exception("SalePoint [{$id}] not found.");
+        }
+
+        return $this->mapper->fromTable($salePoint);
+    }
+
+    public function findByShopKeeper(string $userId): SalePoint
+    {
+        $result = $this->db
+            ->table(Table::VIEW_SHOP_KEEPER_SALE_POINTS)
             ->where('usuario', '=', $userId)
             ->first();
 
@@ -102,9 +117,9 @@ class SalePointRepository implements SalePointRepositoryContract
 
     protected function incrementStock(StockProduct $stockProduct)
     {
-        $stock = $stockProduct->getStock();
-
-        return $this->queryForStock($stockProduct)->increment('stock', $stock);
+        return $this
+            ->queryForStock($stockProduct)
+            ->increment('stock', $stockProduct->getStock());
     }
 
     protected function queryForStock(StockProduct $stockProduct)
@@ -115,5 +130,15 @@ class SalePointRepository implements SalePointRepositoryContract
                 'punto_venta_id' => $stockProduct->getSalePoint()->getId(),
                 'producto_codigo' => $stockProduct->getProduct()->getCode(),
             ]);
+    }
+
+    public function registerSale(SaleProduct $product)
+    {
+        $this->db->table(Table::STOCKS)
+            ->where([
+                'punto_venta_id' => $product->getSalePoint()->getId(),
+                'producto_codigo' => $product->getProduct()->getCode(),
+            ])
+            ->decrement('stock', $product->getQuantity());
     }
 }

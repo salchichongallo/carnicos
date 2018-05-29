@@ -2,6 +2,8 @@
 
 namespace Meat\Store;
 
+use DateTime;
+use Meat\Sale\Sale;
 use Meat\Order\Order;
 use Meat\Street\City;
 use Meat\Order\OrderProduct;
@@ -74,6 +76,25 @@ class SalePoint
         $stock->setProduct($orderProduct->getProduct());
 
         $this->warehouse->add($stock);
+    }
+
+    /**
+     * @param \Meat\Sale\SaleProduct[] $products
+     *
+     * @return Sale
+     */
+    public function sell($products)
+    {
+        $sale = new Sale;
+
+        $sale->setSalePoint($this);
+        $sale->setDate(new DateTime);
+
+        foreach ($products as $product) {
+            $sale->add($product);
+        }
+
+        return $sale;
     }
 
     /**

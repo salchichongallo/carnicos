@@ -28,6 +28,8 @@ $app->singleton(
 
             ->register('clients.create', 'clients/create.php')
 
+            ->register('sales.register', 'sales/register.php')
+
             ->register('404', 'errors/404.php');
     }
 );

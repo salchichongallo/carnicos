@@ -76,6 +76,11 @@ $app->singleton(
             \Meat\Handlers\CreatePromotion::class
         );
 
+        $bus->map(
+            \Meat\Commands\RegisterSale::class,
+            \Meat\Handlers\RegisterSale::class
+        );
+
         return $bus;
     }
 );

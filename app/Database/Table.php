@@ -33,4 +33,8 @@ abstract class Table
     public const CLIENTS = 'clientes';
 
     public const PROMOTIONS = 'promociones';
+
+    public const SALES = 'ventas';
+
+    public const SALE_PRODUCTS = 'ventas_productos';
 }

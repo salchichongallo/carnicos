@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    SaleController,
     AdminController,
     OrderController,
     ClientController,
@@ -35,6 +36,9 @@ $router->post('nuevo_pedido', OrderController::class)->makeOrder();
 
 $router->get('registrar_cliente', ClientController::class)->showRegisterForm();
 $router->post('nuevo_cliente', ClientController::class)->create();
+
+$router->get('registrar_venta', SaleController::class)->showNewSaleForm();
+$router->post('nueva_venta', SaleController::class)->registerSale();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();
