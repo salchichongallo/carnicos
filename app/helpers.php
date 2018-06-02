@@ -1,5 +1,6 @@
 <?php
 
+use Itm\Http\Request;
 use Itm\Http\RedirectResponse;
 use Itm\Foundation\Application;
 use Itm\Contracts\Hashing\Hasher;
@@ -85,4 +86,9 @@ function auth()
     $auth = app(AuthService::class);
 
     return $auth;
+}
+
+function request()
+{
+    return app(Request::class);
 }

@@ -88,11 +88,14 @@ body {
   }
 }
 
+.page-sale,
 .page-order {
   .alert {
     margin-bottom: 1.5em;
   }
+}
 
+.page-order {
   .form-group {
     display: flex;
     flex-direction: column;

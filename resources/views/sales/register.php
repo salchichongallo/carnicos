@@ -9,21 +9,20 @@
         <?php partial('sidebar'); ?>
 
         <div class="app-content-wrapper">
-            <main class="app-content-wrapper__content">
+            <main class="app-content-wrapper__content page-sale">
                 <h1 class="page-title">Registrar Venta</h1>
 
                 <?php partial('message'); ?>
 
-                <form action="?menu=nueva_venta" method="POST">
-                    <button type="submit" class="btn btn--primary btn--wide">
-                        Enviar
-                    </button>
-                </form>
+                <div id="bill-app"></div>
             </main>
         </div>
     </div>
 </div>
 
+<script>
+    window.__PRODUCTS__ = <?php echo collect($products)->toJson(); ?>;
+</script>
 <?php partial('footer'); ?>
 </body>
 </html>

@@ -1,6 +1,16 @@
 .modal {
   display: none;
 
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black, .6);
+    z-index: 1;
+  }
+
   &--opened {
     top: 0;
     left: 0;
@@ -13,12 +23,12 @@
     justify-content: center;
 
     z-index: 999;
-    background: rgba($black, .6);
   }
 
   &__container {
     background: $white;
     border-radius: 3px;
+    z-index: 2;
 
     overflow: hidden;
     box-shadow: 0 14px 28px rgba($black, .25),

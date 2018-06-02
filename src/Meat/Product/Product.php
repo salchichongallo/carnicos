@@ -2,7 +2,9 @@
 
 namespace Meat\Product;
 
-class Product
+use JsonSerializable;
+
+class Product implements JsonSerializable
 {
     /**
      * @var string
@@ -86,5 +88,25 @@ class Product
     public function setPresentation(Presentation $presentation): void
     {
         $this->presentation = $presentation;
+    }
+
+    public function toArray()
+    {
+        return [
+            'code' => $this->code,
+            'name' => $this->name,
+            'unitValue' => $this->price,
+            'presentation' => $this->getPresentation()->getId(),
+        ];
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->jsonSerialize(), $options);
     }
 }

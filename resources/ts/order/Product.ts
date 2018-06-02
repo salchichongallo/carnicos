@@ -50,5 +50,3 @@ export class Product {
     return String(nameElement.innerHTML);
   }
 }
-
-Reflect.set(window, 'Product', Product);

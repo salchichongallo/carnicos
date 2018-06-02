@@ -1,0 +1,135 @@
+.app-bill {
+  margin-bottom: 40px;
+}
+
+.bill-header {
+  min-height: 60px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  &__store {
+    font-size: 28px;
+  }
+
+  &__store-id {
+    font-size: 13px;
+    padding-left: 4px;
+  }
+}
+
+.bill-customer {
+  > .input {
+    width: 100%;
+    min-width: 100%;
+    max-width: 180px;
+  }
+}
+
+.bill-table {
+  &__header {
+    color: $black;
+
+    width: 100%;
+    padding-bottom: 12px;
+    margin: 50px 0 18px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    font-size: 17px;
+    border-bottom: 1px solid rgba($black, .5);
+  }
+}
+
+.bill-content__grid {
+  display: grid;
+  grid-gap: 24px;
+  justify-items: center;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.bill-content {
+  @extend .bill-content__grid;
+
+  min-height: 50px;
+}
+
+.bill-add {
+  width: 100%;
+  position: relative;
+
+  &__grid {
+    @extend .bill-content__grid;
+    margin-top: 24px;
+  }
+
+  &__btn {
+    top: -30px;
+    right: -40px;
+    position: absolute;
+  }
+
+  &__input {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100px;
+
+    border: none;
+    outline: none;
+    text-align: center;
+
+    padding: 0;
+    &:active,
+    &:focus {
+      border: none;
+    }
+  }
+}
+
+.bill-footer {
+  margin-top: 50px;
+  padding-top: 12px;
+  border-top: 1px solid rgba($black, .5);
+
+  &__total-container {
+    color: $black;
+    font-size: 20px;
+    padding: 0 25px 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    margin-top: 1em;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.bill-modal {
+  > .modal__container {
+    max-height: 390px;
+    overflow-y: auto;
+  }
+
+  &__title {
+    margin-bottom: 1em;
+  }
+
+  &__products {
+    display: grid;
+    grid-gap: 24px;
+    justify-items: center;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

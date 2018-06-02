@@ -10,11 +10,14 @@ module.exports = {
 
   devtool: 'source-map',
 
-  entry: path.resolve(__dirname, 'resources/ts/app.ts'),
+  entry: {
+    app: path.resolve(__dirname, 'resources/ts/app.ts'),
+    sale: path.resolve(__dirname, 'resources/ts/bill-app.tsx'),
+  },
 
   output: {
     publicPath: './assets/',
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.join(__dirname, 'public/assets'),
   },
 

@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "commonjs",
     "allowJs": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "sourceMap": true,
 
     "strict": true,
@@ -25,7 +25,8 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "resources/*": ["./resources/*"]
+      "resources/*": ["./resources/*"],
+      "carnicos/*": ["./resources/ts/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
