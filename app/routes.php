@@ -42,3 +42,6 @@ $router->post('nueva_venta', SaleController::class)->registerSale();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();
+
+$router->get('403', WelcomeController::class)->showForbidden();
+$router->post('403', WelcomeController::class)->showForbidden();

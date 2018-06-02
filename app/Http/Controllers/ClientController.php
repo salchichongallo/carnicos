@@ -8,6 +8,12 @@ use Meat\Repositories\NeighborhoodRepository;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('loggedin');
+        $this->middleware('role:admin|shop keeper');
+    }
+
     public function showRegisterForm(NeighborhoodRepository $cityRepository)
     {
         $neighborhoods = $cityRepository->all();

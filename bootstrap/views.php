@@ -30,6 +30,7 @@ $app->singleton(
 
             ->register('sales.register', 'sales/register.php')
 
-            ->register('404', 'errors/404.php');
+            ->register('404', 'errors/404.php')
+            ->register('403', 'errors/403.php');
     }
 );

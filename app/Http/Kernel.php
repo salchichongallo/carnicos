@@ -25,6 +25,12 @@ class Kernel implements KernelContract
         \Meat\Middleware\AuthMiddleware::class,
     ];
 
+    protected $routeMiddleware = [
+        'loggedin' => \Meat\Middleware\CheckAuth::class,
+        'role' => \Meat\Middleware\CheckRole::class,
+        'guest' => \Meat\Middleware\RedirectIfAuthenticated::class,
+    ];
+
     public function __construct(Application $app, Router $router)
     {
         $this->app = $app;
@@ -35,6 +41,8 @@ class Kernel implements KernelContract
 
     public function handle(Request $request): Response
     {
+        $this->bootstrap();
+
         try {
             $this->enableHttpMethodParameterOverride($request);
 
@@ -43,6 +51,13 @@ class Kernel implements KernelContract
             $request->menu = '404';
 
             return $this->handle($request);
+        }
+    }
+
+    public function bootstrap(): void
+    {
+        foreach ($this->routeMiddleware as $name => $middleware) {
+            $this->app->bind($name, $middleware);
         }
     }
 
@@ -58,8 +73,6 @@ class Kernel implements KernelContract
     protected function sendRequestThroughRouter($request)
     {
         $this->app->instance(Request::class, $request);
-
-        $pipeline = $this->app->make(Pipeline::class);
 
         return (new Pipeline($this->app))
             ->send($request)

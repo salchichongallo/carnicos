@@ -8,6 +8,12 @@ use Meat\Repositories\CityRepository;
 
 class SalePointController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('loggedin');
+        $this->middleware('role:admin');
+    }
+
     public function create(Request $request)
     {
         $createSalePoint = new CreateSalePoint;

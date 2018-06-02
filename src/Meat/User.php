@@ -207,6 +207,11 @@ class User
         $this->role = $role;
     }
 
+    public function hasRole(string $role): bool
+    {
+        return strtolower($role) === strtolower($this->role->getName());
+    }
+
     /**
      * @return Neighborhood
      */

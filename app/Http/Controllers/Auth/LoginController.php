@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use Itm\Http\Request;
-use Meat\Middleware\CheckAuth;
 use Meat\Commands\RegisterLogin;
 use Meat\Contracts\Auth\AuthService;
 use App\Http\Controllers\Controller;
 use Meat\Commands\UpdateLastVisitUser;
-use Meat\Middleware\RedirectIfAuthenticated;
 
 class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(CheckAuth::class, [ 'only' => 'logout' ]);
-
-        $this->middleware(RedirectIfAuthenticated::class, [ 'only' => 'showLogin' ]);
+        $this->middleware('loggedin', [ 'only' => 'logout' ]);
+        $this->middleware('guest', [ 'only' => 'showLogin' ]);
     }
 
     public function showLogin()

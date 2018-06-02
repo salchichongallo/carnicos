@@ -10,6 +10,11 @@ use Meat\Repositories\NeighborhoodRepository;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function showRegister(
         NeighborhoodRepository $cityRepository,
         SalePointRepository $salePointRepository

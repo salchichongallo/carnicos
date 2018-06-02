@@ -11,6 +11,12 @@ use Meat\Repositories\SalePointRepository;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('loggedin');
+        $this->middleware('role:shop keeper');
+    }
+
     public function showForm(
         User $user,
         ProductRepository $productRepository,

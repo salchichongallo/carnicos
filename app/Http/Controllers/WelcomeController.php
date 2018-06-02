@@ -30,4 +30,9 @@ class WelcomeController extends Controller
     {
         return view('404');
     }
+
+    public function showForbidden()
+    {
+        return view('403');
+    }
 }
