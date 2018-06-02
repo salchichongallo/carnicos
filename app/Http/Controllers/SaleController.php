@@ -11,7 +11,7 @@ class SaleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('loggedin');
         $this->middleware('role:shop keeper');
     }
 
