@@ -10,6 +10,9 @@
 
             <div class="app-content-wrapper">
                 <main class="app-content-wrapper__content t-center">
+
+                    <?php partial('message'); ?>
+
                     <i class="emoji emoji--xlarge">😖</i>
                     <div class="text text--xlarge">404</div>
                     <h1 class="text text--paragraph">Página no encontrada</h1>
