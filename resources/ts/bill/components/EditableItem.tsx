@@ -97,7 +97,7 @@ class EditableItem extends React.PureComponent<Props, State> {
       <input
         autoFocus
         min="1"
-        type="number"
+        type="text"
         name="quantity"
         value={this.quantity}
         onFocus={this.onFocus}
