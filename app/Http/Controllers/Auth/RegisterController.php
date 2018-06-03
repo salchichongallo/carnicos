@@ -12,7 +12,20 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware($this->guestWithMessage());
+    }
+
+    protected function guestWithMessage() {
+        return function ($request, $next) {
+            if (! auth()->check()) {
+                return $next($request);
+            }
+
+            session()->set('message', 'Debes cerrar sesión para realizar esta acción.');
+            session()->set('message_type', 'info');
+
+            return redirect('?menu=403');
+        };
     }
 
     public function showRegister(
