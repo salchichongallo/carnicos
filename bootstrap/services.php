@@ -7,7 +7,7 @@ $app->singleton(
 
 $app->singleton(
     \Meat\Contracts\Auth\AuthService::class,
-    \Meat\Auth\AuthService::class
+    \App\Auth\AuthService::class
 );
 
 $app->singleton(
@@ -37,8 +37,8 @@ $app->singleton(
         );
 
         $bus->map(
-            \Meat\Commands\CreateSalePoint::class,
-            \Meat\Handlers\CreateSalePoint::class
+            \Meat\Commands\CreateStore::class,
+            \Meat\Handlers\CreateStore::class
         );
 
         $bus->map(
@@ -67,8 +67,8 @@ $app->singleton(
         );
 
         $bus->map(
-            \Meat\Commands\RegisterClient::class,
-            \Meat\Handlers\RegisterClient::class
+            \Meat\Commands\RegisterCustomer::class,
+            \Meat\Handlers\RegisterCustomer::class
         );
 
         $bus->map(

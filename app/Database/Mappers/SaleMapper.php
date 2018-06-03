@@ -13,8 +13,8 @@ class SaleMapper implements Mapper
             'id' => $sale->getId(),
             'total' => $sale->total(),
             'fecha' => $sale->getDate(),
-            'cliente_id' => $sale->getClient()->getId(),
-            'punto_venta_id' => $sale->getSalePoint()->getId(),
+            'cliente_id' => $sale->getCustomer()->getId(),
+            'punto_venta_id' => $sale->getStore()->getId(),
         ];
     }
 }

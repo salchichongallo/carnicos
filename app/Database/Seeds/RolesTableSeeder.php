@@ -32,7 +32,7 @@ class RolesTableSeeder implements Seeder
 
         $this->seed(Role::SHOP_KEEPER, 'Tendero');
 
-        $this->seed(Role::CLIENT, 'Cliente');
+        $this->seed(Role::CUSTOMER, 'Cliente');
     }
 
     protected function seed(string $name, $description = null)

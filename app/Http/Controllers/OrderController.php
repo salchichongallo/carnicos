@@ -6,8 +6,8 @@ use Meat\User;
 use Itm\Http\Request;
 use Meat\Commands\MakeOrder;
 use Meat\Commands\ReceiveOrder;
+use Meat\Repositories\StoreRepository;
 use Meat\Repositories\ProductRepository;
-use Meat\Repositories\SalePointRepository;
 
 class OrderController extends Controller
 {
@@ -19,15 +19,17 @@ class OrderController extends Controller
 
     public function showForm(
         User $user,
-        ProductRepository $productRepository,
-        SalePointRepository $salePointRepository
+        StoreRepository $storeRepository,
+        ProductRepository $productRepository
     )
     {
-        $salePoint = $salePointRepository->findByShopKeeper($user->getId());
+        $store = $storeRepository->findByShopKeeper(
+            $user->getId()
+        );
 
         $products = $productRepository->all();
 
-        return view('orders.create', compact('salePoint', 'products'));
+        return view('orders.create', compact('store', 'products'));
     }
 
     public function makeOrder(Request $request)
@@ -42,24 +44,24 @@ class OrderController extends Controller
         return redirect('?menu=realizar_pedido');
     }
 
-    protected function dispatchNewOrder(Request $request)
+    protected function dispatchNewOrder(Request $request): void
     {
         $makeOrder = new MakeOrder;
 
         $makeOrder->code = $request->code;
-        $makeOrder->salePoint = $request->salepoint;
+        $makeOrder->store = $request->store;
 
         $this->addProducts($makeOrder, $request->products);
 
         dispatch($makeOrder);
     }
 
-    protected function dispatchReceiveOrder(Request $request)
+    protected function dispatchReceiveOrder(Request $request): void
     {
         $receiveOrder = new ReceiveOrder;
 
         $receiveOrder->order = $request->code;
-        $receiveOrder->salePoint = $request->salepoint;
+        $receiveOrder->store = $request->store;
 
         dispatch($receiveOrder);
     }

@@ -20,13 +20,13 @@ $app->singleton(
             ->register('login', 'auth/login.php')
             ->register('register', 'auth/register.php')
 
-            ->register('create_sale_point', 'create_sale_point.php')
+            ->register('stores.create', 'stores/create.php')
 
             ->register('promotions.show', 'promotions/show.php')
 
             ->register('orders.create', 'orders/create.php')
 
-            ->register('clients.create', 'clients/create.php')
+            ->register('customers.create', 'customers/create.php')
 
             ->register('sales.register', 'sales/register.php')
 

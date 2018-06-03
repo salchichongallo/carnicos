@@ -14,5 +14,5 @@ class ReceiveOrder implements Command
     /**
      * @var string
      */
-    public $salePoint;
+    public $store;
 }

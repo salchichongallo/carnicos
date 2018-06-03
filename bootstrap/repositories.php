@@ -36,8 +36,8 @@ $app->bind(
 );
 
 $app->bind(
-    \Meat\Repositories\SalePointRepository::class,
-    \App\Repositories\SalePointRepository::class
+    \Meat\Repositories\StoreRepository::class,
+    \App\Repositories\StoreRepository::class
 );
 
 $app->bind(
@@ -46,8 +46,8 @@ $app->bind(
 );
 
 $app->bind(
-    \Meat\Repositories\ClientRepository::class,
-    \App\Repositories\ClientRepository::class
+    \Meat\Repositories\CustomerRepository::class,
+    \App\Repositories\CustomerRepository::class
 );
 
 $app->bind(

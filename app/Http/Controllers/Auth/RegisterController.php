@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Itm\Http\Request;
 use App\Http\Controllers\Controller;
 use Meat\Commands\RegisterShopKeeper;
-use Meat\Repositories\SalePointRepository;
+use Meat\Repositories\StoreRepository;
 use Meat\Repositories\NeighborhoodRepository;
 
 class RegisterController extends Controller
@@ -16,18 +16,28 @@ class RegisterController extends Controller
     }
 
     public function showRegister(
-        NeighborhoodRepository $cityRepository,
-        SalePointRepository $salePointRepository
+        StoreRepository $storeRepository,
+        NeighborhoodRepository $cityRepository
     )
     {
         $neighborhoods = $cityRepository->all();
 
-        $salePoints = $salePointRepository->all();
+        $stores = $storeRepository->all();
 
-        return view('register', compact('neighborhoods', 'salePoints'));
+        return view('register', compact('neighborhoods', 'stores'));
     }
 
     public function register(Request $request)
+    {
+        $this->dispatchRegisterShopKeeper($request);
+
+        session()->set('message', 'Tendero registrado con éxito.');
+        session()->set('message_type', 'success');
+
+        return redirect('?menu=registro');
+    }
+
+    protected function dispatchRegisterShopKeeper(Request $request): void
     {
         $command = new RegisterShopKeeper;
 
@@ -36,15 +46,10 @@ class RegisterController extends Controller
         $command->email = $request->email;
         $command->password = $request->password;
         $command->neighborhoodId = $request->neighborhood;
-        $command->salePointId = $request->salepoint;
+        $command->storeId = $request->store;
         $command->address = $request->address;
         $command->phone = $request->phone;
 
         dispatch($command);
-
-        session()->set('message', 'Tendero registrado con éxito.');
-        session()->set('message_type', 'success');
-
-        return redirect('?menu=registro');
     }
 }

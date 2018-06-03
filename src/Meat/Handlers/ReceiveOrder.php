@@ -3,11 +3,11 @@
 namespace Meat\Handlers;
 
 use Meat\Order\Order;
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
 use Meat\Store\Warehouse;
 use Itm\Contracts\Bus\Handler;
 use Meat\Repositories\OrderRepository;
-use Meat\Repositories\SalePointRepository;
+use Meat\Repositories\StoreRepository;
 
 class ReceiveOrder implements Handler
 {
@@ -17,17 +17,17 @@ class ReceiveOrder implements Handler
     protected $repository;
 
     /**
-     * @var \Meat\Repositories\SalePointRepository
+     * @var \Meat\Repositories\StoreRepository
      */
-    protected $salePointRepository;
+    protected $storeRepository;
 
     public function __construct(
         OrderRepository $repository,
-        SalePointRepository $salePointRepository
+        StoreRepository $storeRepository
     )
     {
         $this->repository = $repository;
-        $this->salePointRepository = $salePointRepository;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -39,11 +39,11 @@ class ReceiveOrder implements Handler
     {
         $order = $this->getOrder($command);
 
-        $salePoint = $this->getSalePoint($order);
+        $store = $this->getStore($order);
 
-        $salePoint->receiveOrder($order);
+        $store->receiveOrder($order);
 
-        $this->updateStock($salePoint->getWarehouse());
+        $this->updateStock($store->getWarehouse());
     }
 
     /**
@@ -57,30 +57,28 @@ class ReceiveOrder implements Handler
 
         $orderProducts = $this->repository->getProducts($order);
 
-        foreach ($orderProducts as $orderProduct)
-        {
+        foreach ($orderProducts as $orderProduct) {
             $order->add($orderProduct);
         }
 
         return $order;
     }
 
-    protected function getSalePoint(Order $order): SalePoint
+    protected function getStore(Order $order): Store
     {
         // The Order repository instantiates
-        // SalePoint, so we just return it.
-        $salePoint = $order->getSalePoint();
+        // Store, so we just return it.
+        $store = $order->getStore();
 
-        $salePoint->setWarehouse(new Warehouse);
+        $store->setWarehouse(new Warehouse);
 
-        return $salePoint;
+        return $store;
     }
 
     protected function updateStock(Warehouse $warehouse)
     {
-        foreach ($warehouse->getProducts() as $stockProduct)
-        {
-            $this->salePointRepository->addToStock($stockProduct);
+        foreach ($warehouse->getProducts() as $stockProduct) {
+            $this->storeRepository->addToStock($stockProduct);
         }
     }
 }

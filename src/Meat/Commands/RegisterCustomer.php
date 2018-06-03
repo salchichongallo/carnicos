@@ -4,8 +4,13 @@ namespace Meat\Commands;
 
 use Itm\Contracts\Bus\Command;
 
-class CreateSalePoint implements Command
+class RegisterCustomer implements Command
 {
+    /**
+     * @var string
+     */
+    public $name;
+
     /**
      * @var string
      */
@@ -14,7 +19,17 @@ class CreateSalePoint implements Command
     /**
      * @var string
      */
-    public $name;
+    public $email;
+
+    /**
+     * @var string
+     */
+    public $password;
+
+    /**
+     * @var string
+     */
+    public $neighborhoodId;
 
     /**
      * @var string
@@ -25,9 +40,4 @@ class CreateSalePoint implements Command
      * @var string
      */
     public $phone;
-
-    /**
-     * @var string
-     */
-    public $cityId;
 }

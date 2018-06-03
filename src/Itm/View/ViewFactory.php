@@ -3,11 +3,9 @@
 namespace Itm\View;
 
 use Exception;
-use Itm\Contracts\View\{
-    Renderable,
-    ViewFactory as ViewFactoryContract
-};
+use Itm\Contracts\View\Renderable;
 use Illuminate\Contracts\Container\Container;
+use Itm\Contracts\View\ViewFactory as ViewFactoryContract;
 
 class ViewFactory implements ViewFactoryContract
 {
@@ -43,7 +41,8 @@ class ViewFactory implements ViewFactoryContract
     public function register($name, $fileName): self
     {
         // TODO: Change for lazy loading to not store instances.
-        $view = $this->container->make('_view')
+        $view = $this->container
+            ->make('_view')
             ->name($name)
             ->to($fileName);
 

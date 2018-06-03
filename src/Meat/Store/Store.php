@@ -8,7 +8,7 @@ use Meat\Order\Order;
 use Meat\Street\City;
 use Meat\Order\OrderProduct;
 
-class SalePoint
+class Store
 {
     /**
      * @var string
@@ -42,14 +42,14 @@ class SalePoint
 
     public function requestOrder(Order $order)
     {
-        $order->setSalePoint($this);
+        $order->setStore($this);
 
         $order->dispatch();
     }
 
     public function receiveOrder(Order $order)
     {
-        $order->setSalePoint($this);
+        $order->setStore($this);
 
         $order->deliver();
 
@@ -70,7 +70,7 @@ class SalePoint
     {
         $stock = new StockProduct;
 
-        $stock->setSalePoint($this);
+        $stock->setStore($this);
 
         $stock->setStock($orderProduct->getQuantity());
         $stock->setProduct($orderProduct->getProduct());
@@ -87,7 +87,7 @@ class SalePoint
     {
         $sale = new Sale;
 
-        $sale->setSalePoint($this);
+        $sale->setStore($this);
         $sale->setDate(new DateTime);
 
         foreach ($products as $product) {

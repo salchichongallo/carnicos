@@ -1,6 +1,6 @@
 <?php
 
-namespace Meat\Auth;
+namespace App\Auth;
 
 use Exception;
 use Meat\User;

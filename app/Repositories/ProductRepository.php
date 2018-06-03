@@ -5,7 +5,6 @@ namespace App\Repositories;
 use Exception;
 use App\Database\Table;
 use Meat\Product\Product;
-use Meat\Product\Presentation;
 use App\Database\Mappers\ProductMapper;
 use Meat\Repositories\PresentationRepository;
 use Illuminate\Database\ConnectionInterface as Connection;
@@ -66,7 +65,8 @@ class ProductRepository implements ProductRepositoryContract
      */
     public function find(string $code): Product
     {
-        $result = $this->db->table(Table::PRODUCTS)
+        $result = $this->db
+            ->table(Table::PRODUCTS)
             ->where('codigo', '=', $code)
             ->first();
 
@@ -87,7 +87,9 @@ class ProductRepository implements ProductRepositoryContract
 
     public function all()
     {
-        $products = $this->db->table(Table::PRODUCTS)->get();
+        $products = $this->db
+            ->table(Table::PRODUCTS)
+            ->get();
 
         return collect($products)->map(function ($result) {
             $product = $this->mapper->fromTable($result);

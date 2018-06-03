@@ -3,8 +3,8 @@
 namespace Meat\Sale;
 
 use DateTime;
-use Meat\Store\Client;
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
+use Meat\Store\Customer;
 
 class Sale
 {
@@ -19,14 +19,14 @@ class Sale
     protected $date;
 
     /**
-     * @var Client
+     * @var Customer
      */
-    protected $client;
+    protected $customer;
 
     /**
-     * @var SalePoint
+     * @var Store
      */
-    protected $salePoint;
+    protected $store;
 
     /**
      * @var SaleProduct[]
@@ -65,7 +65,7 @@ class Sale
         }
 
         $product->setSale($this);
-        $product->setSalePoint($this->salePoint);
+        $product->setStore($this->store);
 
         $this->products[] = $product;
     }
@@ -116,35 +116,35 @@ class Sale
     }
 
     /**
-     * @return Client
+     * @return Customer
      */
-    public function getClient()
+    public function getCustomer()
     {
-        return $this->client;
+        return $this->customer;
     }
 
     /**
-     * @param Client $client
+     * @param Customer $customer
      */
-    public function setClient(Client $client): void
+    public function setCustomer(Customer $customer): void
     {
-        $this->client = $client;
+        $this->customer = $customer;
     }
 
     /**
-     * @return SalePoint
+     * @return Store
      */
-    public function getSalePoint()
+    public function getStore()
     {
-        return $this->salePoint;
+        return $this->store;
     }
 
     /**
-     * @param SalePoint $salePoint
+     * @param Store $store
      */
-    public function setSalePoint(SalePoint $salePoint): void
+    public function setStore(Store $store): void
     {
-        $this->salePoint = $salePoint;
+        $this->store = $store;
     }
 
     /**

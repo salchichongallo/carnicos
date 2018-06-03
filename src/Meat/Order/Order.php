@@ -4,7 +4,7 @@ namespace Meat\Order;
 
 use DateTime;
 use LogicException;
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
 
 class Order
 {
@@ -24,9 +24,9 @@ class Order
     protected $state;
 
     /**
-     * @var SalePoint
+     * @var Store
      */
-    protected $salePoint;
+    protected $store;
 
     /**
      * @var OrderProduct[]
@@ -140,19 +140,19 @@ class Order
     }
 
     /**
-     * @return SalePoint
+     * @return Store
      */
-    public function getSalePoint()
+    public function getStore()
     {
-        return $this->salePoint;
+        return $this->store;
     }
 
     /**
-     * @param SalePoint $salePoint
+     * @param Store $store
      */
-    public function setSalePoint(SalePoint $salePoint): void
+    public function setStore(Store $store): void
     {
-        $this->salePoint = $salePoint;
+        $this->store = $store;
     }
 
     /**

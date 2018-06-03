@@ -21,14 +21,14 @@ class Kernel implements KernelContract
     protected $router;
 
     protected $middleware = [
-        \Meat\Middleware\RegisterVisit::class,
-        \Meat\Middleware\AuthMiddleware::class,
+        \App\Middleware\RegisterVisit::class,
+        \App\Middleware\AuthMiddleware::class,
     ];
 
     protected $routeMiddleware = [
-        'loggedin' => \Meat\Middleware\CheckAuth::class,
-        'role' => \Meat\Middleware\CheckRole::class,
-        'guest' => \Meat\Middleware\RedirectIfAuthenticated::class,
+        'role' => \App\Middleware\CheckRole::class,
+        'loggedin' => \App\Middleware\CheckAuth::class,
+        'guest' => \App\Middleware\RedirectIfAuthenticated::class,
     ];
 
     public function __construct(Application $app, Router $router)

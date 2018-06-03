@@ -2,7 +2,6 @@
 
 namespace Itm\Routing;
 
-use Exception;
 use Itm\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Container\Container;

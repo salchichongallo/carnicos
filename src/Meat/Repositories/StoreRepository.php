@@ -2,21 +2,21 @@
 
 namespace Meat\Repositories;
 
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
 use Meat\Sale\SaleProduct;
 use Meat\Store\StockProduct;
 
-interface SalePointRepository
+interface StoreRepository
 {
     public function all();
 
-    public function find(string $id): SalePoint;
+    public function find(string $id): Store;
 
-    public function add(SalePoint $pointSale): bool;
+    public function add(Store $store): bool;
 
     public function addToStock(StockProduct $stockProduct);
 
-    public function findByShopKeeper(string $userId): SalePoint;
+    public function findByShopKeeper(string $userId): Store;
 
     public function registerSale(SaleProduct $product);
 }

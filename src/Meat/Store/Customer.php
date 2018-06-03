@@ -4,7 +4,7 @@ namespace Meat\Store;
 
 use Meat\User;
 
-class Client
+class Customer
 {
     /**
      * @var string

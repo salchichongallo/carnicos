@@ -39,19 +39,19 @@
                                 />
                             </label>
 
-                            <label for="_salepoint" class="form-control form-control--disabled">
+                            <label for="_store" class="form-control form-control--disabled">
                                 <span>Punto de venta:</span>
                                 <input
                                     disabled
                                     type="text"
                                     class="input"
-                                    id="_salepoint"
-                                    value="<?php echo escape($salePoint->getName()); ?>"
+                                    id="_store"
+                                    value="<?php echo escape($store->getName()); ?>"
                                 />
                                 <input
                                     type="hidden"
-                                    name="salepoint"
-                                    value="<?php echo $salePoint->getId(); ?>"
+                                    name="store"
+                                    value="<?php echo $store->getId(); ?>"
                                 />
                             </label>
 

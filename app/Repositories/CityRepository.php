@@ -29,7 +29,8 @@ class CityRepository implements CityRepositoryContract
 
     public function findById(string $id): City
     {
-        $city = $this->db->table(Table::CITIES)
+        $city = $this->db
+            ->table(Table::CITIES)
             ->where('id', '=', $id)
             ->first();
 
@@ -42,7 +43,8 @@ class CityRepository implements CityRepositoryContract
 
     public function find(string $city): City
     {
-        $result = $this->db->table(Table::CITIES)
+        $result = $this->db
+            ->table(Table::CITIES)
             ->where('nombre', '=', $city)
             ->first();
 
@@ -63,7 +65,8 @@ class CityRepository implements CityRepositoryContract
     {
         $visitsTable = Table::VISITS;
 
-        $result = $this->db->table($visitsTable)
+        $result = $this->db
+            ->table($visitsTable)
             ->where('ciudad_id', '=', $city->getId())
             ->first(['total']);
 
@@ -76,7 +79,8 @@ class CityRepository implements CityRepositoryContract
 
     public function add(City $city): bool
     {
-        $id = $this->db->table(Table::CITIES)
+        $id = $this->db
+            ->table(Table::CITIES)
             ->insertGetId($this->mapper->toTable(
                 $city
             ));
@@ -88,7 +92,9 @@ class CityRepository implements CityRepositoryContract
 
     public function all()
     {
-        $cities = $this->db->table(Table::CITIES)->get();
+        $cities = $this->db
+            ->table(Table::CITIES)
+            ->get();
 
         return collect($cities)->map(function ($city) {
             return $this->mapper->fromTable($city);
@@ -97,7 +103,8 @@ class CityRepository implements CityRepositoryContract
 
     public function updateVisits(City $city): bool
     {
-        $result = $this->db->table(Table::VISITS)
+        $result = $this->db
+            ->table(Table::VISITS)
             ->where('ciudad_id', '=', $city->getId())
             ->update([ 'total' => $city->getTotalVisits() ]);
 

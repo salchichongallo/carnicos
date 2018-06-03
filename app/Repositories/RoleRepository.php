@@ -29,7 +29,8 @@ class RoleRepository implements RoleRepositoryContract
 
     public function add(Role $role): bool
     {
-        return $this->db->table(Table::ROLES)
+        return $this->db
+            ->table(Table::ROLES)
             ->insert($this->mapper->toTable(
                 $role
             ));
@@ -37,7 +38,8 @@ class RoleRepository implements RoleRepositoryContract
 
     public function find(string $role): Role
     {
-        $result = $this->db->table(Table::ROLES)
+        $result = $this->db
+            ->table(Table::ROLES)
             ->where('nombre', '=', $role)
             ->first();
 

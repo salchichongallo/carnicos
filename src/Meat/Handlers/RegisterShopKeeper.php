@@ -6,7 +6,7 @@ use Meat\User;
 use Meat\Role\Role;
 use Meat\Commands\CreateUser;
 use Itm\Contracts\Bus\Handler;
-use Meat\Store\{ShopKeeper, SalePoint};
+use Meat\Store\{ShopKeeper, Store};
 use Meat\Repositories\ShopKeeperRepository;
 
 class RegisterShopKeeper implements Handler
@@ -30,7 +30,7 @@ class RegisterShopKeeper implements Handler
 
         $this->assignUser($shopKeeper, $command);
 
-        $this->assignSalePoint($shopKeeper, $command);
+        $this->assignStore($shopKeeper, $command);
 
         $this->repository->add($shopKeeper);
     }
@@ -53,13 +53,13 @@ class RegisterShopKeeper implements Handler
      * @param  \Meat\Commands\RegisterShopKeeper $command
      * @return void
      */
-    protected function assignSalePoint($shopKeeper, $command): void
+    protected function assignStore($shopKeeper, $command): void
     {
-        $salePoint = new SalePoint;
+        $store = new Store;
 
-        $salePoint->setId($command->salePointId);
+        $store->setId($command->storeId);
 
-        $shopKeeper->setSalePoint($salePoint);
+        $shopKeeper->setStore($store);
     }
 
     /**

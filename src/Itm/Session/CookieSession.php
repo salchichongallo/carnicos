@@ -25,8 +25,7 @@ class CookieSession extends BaseSession
     {
         $deleteImmediately = time() - 3600;
 
-        foreach (func_get_args() as $cookie)
-        {
+        foreach (func_get_args() as $cookie) {
             $this->delete($cookie);
 
             setcookie($cookie, '', $deleteImmediately);

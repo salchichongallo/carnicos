@@ -47,7 +47,9 @@
                             <input name="phone" type="text" class="input" id="phone" />
                         </label>
 
-                        <input type="submit" value="Crear" class="btn btn--primary btn--wide" />
+                        <button type="submit" class="btn btn--primary btn--wide">
+                            Crear
+                        </button>
                     </form>
                 </main>
             </div>

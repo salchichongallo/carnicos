@@ -4,33 +4,33 @@ namespace Meat\Handlers;
 
 use Meat\User;
 use Meat\Role\Role;
-use Meat\Store\Client;
+use Meat\Store\Customer;
 use Meat\Commands\CreateUser;
 use Itm\Contracts\Bus\Handler;
-use Meat\Repositories\ClientRepository;
+use Meat\Repositories\CustomerRepository;
 
-class RegisterClient implements Handler
+class RegisterCustomer implements Handler
 {
     /**
-     * @var ClientRepository
+     * @var CustomerRepository
      */
     protected $repository;
 
     /**
-     * @var \Meat\Commands\RegisterClient
+     * @var \Meat\Commands\RegisterCustomer
      */
     protected $command;
 
     /**
-     * @param ClientRepository $repository
+     * @param CustomerRepository $repository
      */
-    public function __construct(ClientRepository $repository)
+    public function __construct(CustomerRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * @param \Meat\Commands\RegisterClient $command
+     * @param \Meat\Commands\RegisterCustomer $command
      *
      * @return mixed|void
      */
@@ -38,30 +38,30 @@ class RegisterClient implements Handler
     {
         $this->command = $command;
 
-        $client = $this->createClient();
+        $customer = $this->createCustomer();
 
-        $this->assignUser($client);
+        $this->assignUser($customer);
 
-        $this->repository->add($client);
+        $this->repository->add($customer);
     }
 
-    protected function createClient(): Client
+    protected function createCustomer(): Customer
     {
-        $client = new Client;
+        $customer = new Customer;
 
-        $client->setId($this->command->id);
+        $customer->setId($this->command->id);
 
-        return $client;
+        return $customer;
     }
 
-    protected function assignUser(Client $client): void
+    protected function assignUser(Customer $customer): void
     {
-        $client->setUser(
-            $this->createUserForClient()
+        $customer->setUser(
+            $this->createUserForCustomer()
         );
     }
 
-    protected function createUserForClient(): User
+    protected function createUserForCustomer(): User
     {
         $createUser = new CreateUser;
 
@@ -72,7 +72,7 @@ class RegisterClient implements Handler
         $createUser->phone = $this->command->phone;
         $createUser->neighborhoodId = $this->command->neighborhoodId;
 
-        $createUser->role = Role::CLIENT;
+        $createUser->role = Role::CUSTOMER;
 
         return dispatch($createUser);
     }

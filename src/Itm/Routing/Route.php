@@ -2,7 +2,6 @@
 
 namespace Itm\Routing;
 
-use Exception;
 use Itm\Http\{Request, Response};
 use Illuminate\Contracts\Container\Container;
 

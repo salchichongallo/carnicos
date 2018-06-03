@@ -1,9 +1,8 @@
 <?php
 
-namespace Meat\Middleware;
+namespace App\Middleware;
 
 use Closure;
-use Exception;
 use Itm\Http\Request;
 use Itm\Session\Session;
 use Itm\Routing\Middleware;

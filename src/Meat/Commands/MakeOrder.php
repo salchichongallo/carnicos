@@ -14,7 +14,7 @@ class MakeOrder implements Command
     /**
      * @var string
      */
-    public $salePoint;
+    public $store;
 
     /**
      * @var array

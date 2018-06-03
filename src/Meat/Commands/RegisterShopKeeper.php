@@ -34,7 +34,7 @@ class RegisterShopKeeper implements Command
     /**
      * @var string
      */
-    public $salePointId;
+    public $storeId;
 
     /**
      * @var string

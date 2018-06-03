@@ -18,9 +18,9 @@ abstract class Table
 
     public const ROLES = 'roles';
 
-    public const SALE_POINTS = 'punto_ventas';
+    public const STORES = 'punto_ventas';
 
-    public const VIEW_SHOP_KEEPER_SALE_POINTS = 'view_tenderos_punto_ventas';
+    public const VIEW_SHOP_KEEPER_STORES = 'view_tenderos_punto_ventas';
 
     public const SHOP_KEEPERS = 'tenderos';
 
@@ -30,7 +30,7 @@ abstract class Table
 
     public const STOCKS = 'stocks';
 
-    public const CLIENTS = 'clientes';
+    public const CUSTOMERS = 'clientes';
 
     public const PROMOTIONS = 'promociones';
 

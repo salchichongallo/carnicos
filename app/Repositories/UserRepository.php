@@ -48,7 +48,8 @@ class UserRepository implements UserRepositoryContract
 
     public function add(User $user): bool
     {
-        $id = $this->db->table(Table::USERS)
+        $id = $this->db
+            ->table(Table::USERS)
             ->insertGetId($this->mapper->toTable(
                 $user
             ));
@@ -60,7 +61,9 @@ class UserRepository implements UserRepositoryContract
 
     public function find(string $id): User
     {
-        $result = $this->db->table(Table::USERS)->find($id);
+        $result = $this->db
+            ->table(Table::USERS)
+            ->find($id);
 
         if (! $result) {
             throw new Exception("User with id [{$id}] not found.");
@@ -86,7 +89,8 @@ class UserRepository implements UserRepositoryContract
 
     public function findByEmail(string $email): User
     {
-        $result = $this->db->table(Table::USERS)
+        $result = $this->db
+            ->table(Table::USERS)
             ->where('email', '=', $email)
             ->first();
 
@@ -99,7 +103,8 @@ class UserRepository implements UserRepositoryContract
 
     public function updateTotalLogins(User $user): bool
     {
-        $result = $this->db->table(Table::USERS)
+        $result = $this->db
+            ->table(Table::USERS)
             ->where('id', '=', $user->getId())
             ->update([ 'total_login' => $user->getTotalLogin() ]);
 
@@ -108,7 +113,8 @@ class UserRepository implements UserRepositoryContract
 
     public function updateVisit(User $user)
     {
-        return $this->db->table(Table::USERS)
+        return $this->db
+            ->table(Table::USERS)
             ->where('id', '=', $user->getId())
             ->update([ 'ultimo_ingreso' => $user->getLastVisit() ]);
     }

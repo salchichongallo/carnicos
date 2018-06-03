@@ -29,7 +29,8 @@ class PresentationRepository implements PresentationRepositoryContract
 
     public function find(string $presentation): Presentation
     {
-        $result = $this->db->table(Table::PRESENTATIONS)
+        $result = $this->db
+            ->table(Table::PRESENTATIONS)
             ->where('presentacion', '=', $presentation)
             ->first();
 
@@ -42,7 +43,8 @@ class PresentationRepository implements PresentationRepositoryContract
 
     public function add(Presentation $presentation): bool
     {
-        return $this->db->table(Table::PRESENTATIONS)
+        return $this->db
+            ->table(Table::PRESENTATIONS)
             ->insert($this->mapper->toTable(
                 $presentation
             ));
@@ -50,7 +52,8 @@ class PresentationRepository implements PresentationRepositoryContract
 
     public function exists(string $presentation): bool
     {
-        return $this->db->table(Table::PRESENTATIONS)
+        return $this->db
+            ->table(Table::PRESENTATIONS)
             ->where('presentacion', '=', $presentation)
             ->limit(1)
             ->exists();

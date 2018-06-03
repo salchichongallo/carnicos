@@ -21,7 +21,9 @@
                             <input name="password" type="password" class="input" id="password" />
                         </label>
 
-                        <input type="submit" value="Iniciar Sesión" class="btn btn--primary btn--wide" />
+                        <button type="submit" class="btn btn--primary btn--wide">
+                            Iniciar Sesión
+                        </button>
                     </form>
                 </main>
             </div>

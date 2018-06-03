@@ -12,7 +12,7 @@ class ShopKeeperMapper implements Mapper
     {
         return [
             'cedula' => $shopKeeper->getId(),
-            'punto_venta_id' => $shopKeeper->getSalePoint()->getId(),
+            'punto_venta_id' => $shopKeeper->getStore()->getId(),
             'usuario_id' => $shopKeeper->getUser()->getId(),
         ];
     }

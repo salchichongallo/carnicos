@@ -1,6 +1,6 @@
 <?php
 
-namespace Meat\Middleware;
+namespace App\Middleware;
 
 use Closure;
 use Itm\Http\Request;

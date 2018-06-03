@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Itm\Http\Request;
-use Meat\Commands\RegisterClient;
+use Meat\Commands\RegisterCustomer;
 use Meat\Repositories\NeighborhoodRepository;
 
-class ClientController extends Controller
+class CustomerController extends Controller
 {
     public function __construct()
     {
@@ -18,12 +18,22 @@ class ClientController extends Controller
     {
         $neighborhoods = $cityRepository->all();
 
-        return view('clients.create', compact('neighborhoods'));
+        return view('customers.create', compact('neighborhoods'));
     }
 
     public function create(Request $request)
     {
-        $command = new RegisterClient;
+        $this->registerCustomer($request);
+
+        session()->set('message', 'Cliente registrado con éxito.');
+        session()->set('message_type', 'success');
+
+        return redirect('?menu=registrar_cliente');
+    }
+
+    protected function registerCustomer(Request $request): void
+    {
+        $command = new RegisterCustomer;
 
         $command->id = $request->id;
         $command->name = $request->name;
@@ -34,10 +44,5 @@ class ClientController extends Controller
         $command->phone = $request->phone;
 
         dispatch($command);
-
-        session()->set('message', 'Cliente registrado con éxito.');
-        session()->set('message_type', 'success');
-
-        return redirect('?menu=registrar_cliente');
     }
 }

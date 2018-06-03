@@ -8,7 +8,7 @@ class Role
 
     public const SHOP_KEEPER = 'Shop Keeper';
 
-    public const CLIENT = 'Client';
+    public const CUSTOMER = 'Customer';
 
     /**
      * @var string

@@ -9,12 +9,12 @@ class RegisterSale implements Command
     /**
      * @var string
      */
-    public $salePoint;
+    public $store;
 
     /**
      * @var string
      */
-    public $client;
+    public $customer;
 
     /**
      * @var string[]

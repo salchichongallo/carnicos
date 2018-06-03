@@ -5,7 +5,7 @@ namespace App\Repositories;
 use Meat\Sale\Sale;
 use App\Database\Table;
 use App\Database\Mappers\SaleMapper;
-use Meat\Repositories\SalePointRepository;
+use Meat\Repositories\StoreRepository;
 use Meat\Repositories\SaleProductRepository;
 use Illuminate\Database\ConnectionInterface as Connection;
 use Meat\Repositories\SaleRepository as SaleRepositoryContract;
@@ -28,20 +28,20 @@ class SaleRepository implements SaleRepositoryContract
     protected $saleProductRepository;
 
     /**
-     * @var SalePointRepository
+     * @var StoreRepository
      */
-    protected $salePointRepository;
+    protected $storeRepository;
 
     public function __construct(
         Connection $db,
         SaleMapper $mapper,
-        SalePointRepository $salePointRepository,
+        StoreRepository $storeRepository,
         SaleProductRepository $saleProductRepository
     )
     {
         $this->db = $db;
         $this->mapper = $mapper;
-        $this->salePointRepository = $salePointRepository;
+        $this->storeRepository = $storeRepository;
         $this->saleProductRepository = $saleProductRepository;
     }
 
@@ -66,7 +66,7 @@ class SaleRepository implements SaleRepositoryContract
         foreach ($sale->getProducts() as $product) {
             $this->saleProductRepository->add($product);
 
-            $this->salePointRepository->registerSale($product);
+            $this->storeRepository->registerSale($product);
         }
     }
 }

@@ -4,10 +4,10 @@ use App\Http\Controllers\{
     SaleController,
     AdminController,
     OrderController,
-    ClientController,
+    CustomerController,
     WelcomeController,
     PromotionController,
-    SalePointController,
+    StoreController,
     Auth\LoginController,
     Auth\RegisterController
 };
@@ -26,16 +26,16 @@ $router->post('logout', LoginController::class)->logout();
 $router->get('registro', RegisterController::class)->showRegister();
 $router->post('nuevo_registro', RegisterController::class)->register();
 
-$router->get('nueva_tienda', SalePointController::class)->showCreationForm();
-$router->post('crear_nueva_tienda', SalePointController::class)->create();
+$router->get('nueva_tienda', StoreController::class)->showCreationForm();
+$router->post('crear_nueva_tienda', StoreController::class)->create();
 
 $router->get('promociones', PromotionController::class)->showPromotions();
 
 $router->get('realizar_pedido', OrderController::class)->showForm();
 $router->post('nuevo_pedido', OrderController::class)->makeOrder();
 
-$router->get('registrar_cliente', ClientController::class)->showRegisterForm();
-$router->post('nuevo_cliente', ClientController::class)->create();
+$router->get('registrar_cliente', CustomerController::class)->showRegisterForm();
+$router->post('nuevo_cliente', CustomerController::class)->create();
 
 $router->get('registrar_venta', SaleController::class)->showNewSaleForm();
 $router->post('nueva_venta', SaleController::class)->registerSale();

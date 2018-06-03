@@ -30,7 +30,9 @@
                                 </div>
 
                                 <div class="actions actions--end">
-                                    <input type="submit" class="btn btn--inline" value="Continuar">
+                                    <button type="submit" class="btn btn--inline">
+                                        Continuar
+                                    </button>
                                 </div>
                             </form>
                         </div>

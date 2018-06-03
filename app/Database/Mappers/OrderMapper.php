@@ -4,9 +4,9 @@ namespace App\Database\Mappers;
 
 use stdClass;
 use DateTime;
+use Meat\Store\Store;
 use Meat\Order\Order;
 use App\Database\Mapper;
-use Meat\Store\SalePoint;
 use Meat\Order\OrderProduct;
 
 class OrderMapper implements Mapper
@@ -17,7 +17,7 @@ class OrderMapper implements Mapper
             'numero' => $order->getCode(),
             'fecha' => $order->getDate(),
             'estado' => $order->getState(),
-            'punto_venta_id' => $order->getSalePoint()->getId(),
+            'punto_venta_id' => $order->getStore()->getId(),
         ];
     }
 
@@ -32,10 +32,10 @@ class OrderMapper implements Mapper
         $date->setTimestamp(strtotime($table->fecha));
         $order->setDate($date);
 
-        $salePoint = new SalePoint;
-        $salePoint->setId($table->punto_venta_id);
+        $store = new Store;
+        $store->setId($table->punto_venta_id);
 
-        $order->setSalePoint($salePoint);
+        $order->setStore($store);
 
         return $order;
     }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Meat\Middleware;
+namespace App\Middleware;
 
 use Closure;
 use Itm\Http\Request;
 use Itm\Routing\Middleware;
 
-class CheckAuth implements Middleware
+class RedirectIfAuthenticated implements Middleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (! auth()->check()) {
-            return redirect('?menu=login');
+        if (auth()->check()) {
+            return redirect('?menu=bienvenido');
         }
 
         return $next($request);

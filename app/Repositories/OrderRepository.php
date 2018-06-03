@@ -6,9 +6,9 @@ use Exception;
 use Meat\Order\Order;
 use App\Database\Table;
 use App\Database\Mappers\OrderMapper;
+use Meat\Repositories\ProductRepository;
 use Illuminate\Database\ConnectionInterface as Connection;
 use Meat\Repositories\OrderRepository as OrderRepositoryContract;
-use Meat\Repositories\ProductRepository;
 
 class OrderRepository implements OrderRepositoryContract
 {
@@ -40,7 +40,8 @@ class OrderRepository implements OrderRepositoryContract
 
     public function add(Order $order): bool
     {
-        $inserted = $this->db->table(Table::ORDERS)
+        $inserted = $this->db
+            ->table(Table::ORDERS)
             ->insert($this->mapper->toTable(
                 $order
             ));
@@ -57,7 +58,8 @@ class OrderRepository implements OrderRepositoryContract
     protected function addOrderProduct($order, $orderProducts): void
     {
         foreach ($orderProducts as $orderProduct) {
-            $this->db->table(Table::ORDER_PRODUCTS)
+            $this->db
+                ->table(Table::ORDER_PRODUCTS)
                 ->insert($this->mapper->orderProductToTable(
                     $order, $orderProduct
                 ));
@@ -66,7 +68,8 @@ class OrderRepository implements OrderRepositoryContract
 
     public function find(string $order): Order
     {
-        $result = $this->db->table(Table::ORDERS)
+        $result = $this->db
+            ->table(Table::ORDERS)
             ->where('numero', '=', $order)
             ->first();
 
@@ -79,7 +82,8 @@ class OrderRepository implements OrderRepositoryContract
 
     public function getProducts(Order $order)
     {
-        $products = $this->db->table(Table::ORDER_PRODUCTS)
+        $products = $this->db
+            ->table(Table::ORDER_PRODUCTS)
             ->where('numero_pedido', '=', $order->getCode())
             ->get();
 

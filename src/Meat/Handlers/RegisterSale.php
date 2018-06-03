@@ -2,13 +2,13 @@
 
 namespace Meat\Handlers;
 
-use Meat\Store\Client;
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
+use Meat\Store\Customer;
 use Meat\Sale\SaleProduct;
 use Itm\Contracts\Bus\Handler;
 use Meat\Repositories\SaleRepository;
+use Meat\Repositories\StoreRepository;
 use Meat\Repositories\ProductRepository;
-use Meat\Repositories\SalePointRepository;
 
 class RegisterSale implements Handler
 {
@@ -23,9 +23,9 @@ class RegisterSale implements Handler
     protected $repository;
 
     /**
-     * @var SalePointRepository
+     * @var StoreRepository
      */
-    protected $salePointRepository;
+    protected $storeRepository;
 
     /**
      * @var ProductRepository
@@ -35,19 +35,19 @@ class RegisterSale implements Handler
     /**
      * RegisterSale constructor.
      *
-     * @param SaleRepository      $repository
-     * @param ProductRepository   $productRepository
-     * @param SalePointRepository $salePointRepository
+     * @param SaleRepository    $repository
+     * @param StoreRepository   $storeRepository
+     * @param ProductRepository $productRepository
      */
     public function __construct(
         SaleRepository $repository,
-        ProductRepository $productRepository,
-        SalePointRepository $salePointRepository
+        StoreRepository $storeRepository,
+        ProductRepository $productRepository
     )
     {
         $this->repository = $repository;
         $this->productRepository = $productRepository;
-        $this->salePointRepository = $salePointRepository;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -59,19 +59,19 @@ class RegisterSale implements Handler
     {
         $this->command = $command;
 
-        $salePoint = $this->getSalePoint();
+        $store = $this->getStore();
 
-        $sale = $salePoint->sell($this->getProducts());
+        $sale = $store->sell($this->getProducts());
 
-        $sale->setClient($this->getClient());
+        $sale->setCustomer($this->getCustomer());
 
         $this->repository->add($sale);
     }
 
-    protected function getSalePoint(): SalePoint
+    protected function getStore(): Store
     {
-        return $this->salePointRepository->find(
-            $this->command->salePoint
+        return $this->storeRepository->find(
+            $this->command->store
         );
     }
 
@@ -97,12 +97,12 @@ class RegisterSale implements Handler
         return $products;
     }
 
-    protected function getClient(): Client
+    protected function getCustomer(): Customer
     {
-        $client = new Client;
+        $customer = new Customer;
 
-        $client->setId($this->command->client);
+        $customer->setId($this->command->customer);
 
-        return $client;
+        return $customer;
     }
 }

@@ -3,7 +3,7 @@
 namespace Meat\Handlers;
 
 use Meat\Order\Order;
-use Meat\Store\SalePoint;
+use Meat\Store\Store;
 use Meat\Order\OrderProduct;
 use Itm\Contracts\Bus\Handler;
 use Meat\Repositories\OrderRepository;
@@ -39,9 +39,9 @@ class MakeOrder implements Handler
     {
         $order = $this->createOrder($command);
 
-        $salePoint = $this->getSalePoint($command);
+        $store = $this->getStore($command);
 
-        $salePoint->requestOrder($order);
+        $store->requestOrder($order);
 
         $this->orderRepository->add($order);
     }
@@ -87,14 +87,14 @@ class MakeOrder implements Handler
     /**
      * @param \Meat\Commands\MakeOrder $command
      *
-     * @return \Meat\Store\SalePoint
+     * @return \Meat\Store\Store
      */
-    protected function getSalePoint($command)
+    protected function getStore($command)
     {
-        $salePoint = new SalePoint;
+        $store = new Store;
 
-        $salePoint->setId($command->salePoint);
+        $store->setId($command->store);
 
-        return $salePoint;
+        return $store;
     }
 }

@@ -20,9 +20,9 @@ class StockProduct
     protected $product;
 
     /**
-     * @var SalePoint
+     * @var Store
      */
-    protected $salePoint;
+    protected $store;
 
     public function needsReorder(int $orderStock): bool
     {
@@ -70,18 +70,18 @@ class StockProduct
     }
 
     /**
-     * @return SalePoint
+     * @return Store
      */
-    public function getSalePoint()
+    public function getStore()
     {
-        return $this->salePoint;
+        return $this->store;
     }
 
     /**
-     * @param SalePoint $salePoint
+     * @param Store $store
      */
-    public function setSalePoint(SalePoint $salePoint): void
+    public function setStore(Store $store): void
     {
-        $this->salePoint = $salePoint;
+        $this->store = $store;
     }
 }

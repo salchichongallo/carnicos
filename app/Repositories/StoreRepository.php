@@ -3,16 +3,16 @@
 namespace App\Repositories;
 
 use Exception;
+use Meat\Store\Store;
 use App\Database\Table;
-use Meat\Store\SalePoint;
 use Meat\Sale\SaleProduct;
 use Meat\Store\StockProduct;
 use Meat\Repositories\CityRepository;
-use App\Database\Mappers\SalePointMapper;
+use App\Database\Mappers\StoreMapper;
 use Illuminate\Database\ConnectionInterface as Connection;
-use Meat\Repositories\SalePointRepository as SalePointRepositoryContract;
+use Meat\Repositories\StoreRepository as StoreRepositoryContract;
 
-class SalePointRepository implements SalePointRepositoryContract
+class StoreRepository implements StoreRepositoryContract
 {
     /**
      * @var Connection
@@ -20,7 +20,7 @@ class SalePointRepository implements SalePointRepositoryContract
     protected $db;
 
     /**
-     * @var SalePointMapper
+     * @var StoreMapper
      */
     protected $mapper;
 
@@ -31,7 +31,7 @@ class SalePointRepository implements SalePointRepositoryContract
 
     public function __construct(
         Connection $db,
-        SalePointMapper $mapper,
+        StoreMapper $mapper,
         CityRepository $cityRepository
     )
     {
@@ -42,49 +42,52 @@ class SalePointRepository implements SalePointRepositoryContract
 
     public function all()
     {
-        $salePoints = $this->db->table(Table::SALE_POINTS)->get();
+        $stores = $this->db
+            ->table(Table::STORES)
+            ->get();
 
-        return collect($salePoints)->map(function ($result) {
-            $salePoint = $this->mapper->fromTable($result);
+        return collect($stores)->map(function ($result) {
+            $store = $this->mapper->fromTable($result);
 
-            $salePoint->setCity(
+            $store->setCity(
                 $this->cityRepository->findById($result->ciudad_id)
             );
 
-            return $salePoint;
+            return $store;
         });
     }
 
-    public function add(SalePoint $salePoint): bool
+    public function add(Store $store): bool
     {
-        return $this->db->table(Table::SALE_POINTS)
+        return $this->db
+            ->table(Table::STORES)
             ->insert($this->mapper->toTable(
-                $salePoint
+                $store
             ));
     }
 
-    public function find(string $id): SalePoint
+    public function find(string $id): Store
     {
-        $salePoint = $this->db
-            ->table(Table::SALE_POINTS)
+        $store = $this->db
+            ->table(Table::STORES)
             ->find($id);
 
-        if (! $salePoint) {
-            throw new Exception("SalePoint [{$id}] not found.");
+        if (! $store) {
+            throw new Exception("Store [{$id}] not found.");
         }
 
-        return $this->mapper->fromTable($salePoint);
+        return $this->mapper->fromTable($store);
     }
 
-    public function findByShopKeeper(string $userId): SalePoint
+    public function findByShopKeeper(string $userId): Store
     {
         $result = $this->db
-            ->table(Table::VIEW_SHOP_KEEPER_SALE_POINTS)
+            ->table(Table::VIEW_SHOP_KEEPER_STORES)
             ->where('usuario', '=', $userId)
             ->first();
 
         if (! $result) {
-            throw new Exception("SalePoint for user [{$userId}] not found.");
+            throw new Exception("Store for user [{$userId}] not found.");
         }
 
         return $this->mapper->fromTable($result);
@@ -109,7 +112,7 @@ class SalePointRepository implements SalePointRepositoryContract
         return $this->db
             ->table(Table::STOCKS)
             ->insert([
-                'punto_venta_id' => $stockProduct->getSalePoint()->getId(),
+                'punto_venta_id' => $stockProduct->getStore()->getId(),
                 'producto_codigo' => $stockProduct->getProduct()->getCode(),
                 'stock' => 0,
             ]);
@@ -127,16 +130,17 @@ class SalePointRepository implements SalePointRepositoryContract
         return $this->db
             ->table(Table::STOCKS)
             ->where([
-                'punto_venta_id' => $stockProduct->getSalePoint()->getId(),
+                'punto_venta_id' => $stockProduct->getStore()->getId(),
                 'producto_codigo' => $stockProduct->getProduct()->getCode(),
             ]);
     }
 
     public function registerSale(SaleProduct $product)
     {
-        $this->db->table(Table::STOCKS)
+        $this->db
+            ->table(Table::STOCKS)
             ->where([
-                'punto_venta_id' => $product->getSalePoint()->getId(),
+                'punto_venta_id' => $product->getStore()->getId(),
                 'producto_codigo' => $product->getProduct()->getCode(),
             ])
             ->decrement('stock', $product->getQuantity());

@@ -32,8 +32,8 @@ class PromotionRepository implements PromotionRepositoryContract
     )
     {
         $this->db = $db;
-        $this->productRepository = $productRepository;
         $this->cityRepository = $cityRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function findByCity(string $city)

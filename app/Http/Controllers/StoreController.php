@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Itm\Http\Request;
-use Meat\Commands\CreateSalePoint;
+use Meat\Commands\CreateStore;
 use Meat\Repositories\CityRepository;
 
-class SalePointController extends Controller
+class StoreController extends Controller
 {
     public function __construct()
     {
@@ -16,15 +16,7 @@ class SalePointController extends Controller
 
     public function create(Request $request)
     {
-        $createSalePoint = new CreateSalePoint;
-
-        $createSalePoint->id = $request->id;
-        $createSalePoint->name = $request->name;
-        $createSalePoint->address = $request->address;
-        $createSalePoint->cityId = $request->city;
-        $createSalePoint->phone = $request->phone;
-
-        dispatch($createSalePoint);
+        $this->dispatchCreateStore($request);
 
         session()->set('message', 'Punto de venta creado con éxito.');
         session()->set('message_type', 'success');
@@ -32,10 +24,23 @@ class SalePointController extends Controller
         return redirect('?menu=nueva_tienda');
     }
 
+    protected function dispatchCreateStore(Request $request): void
+    {
+        $createStore = new CreateStore;
+
+        $createStore->id = $request->id;
+        $createStore->name = $request->name;
+        $createStore->address = $request->address;
+        $createStore->cityId = $request->city;
+        $createStore->phone = $request->phone;
+
+        dispatch($createStore);
+    }
+
     public function showCreationForm(CityRepository $cityRepository)
     {
         $cities = $cityRepository->all();
 
-        return view('create_sale_point', compact('cities'));
+        return view('stores.create', compact('cities'));
     }
 }

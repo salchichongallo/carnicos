@@ -2,7 +2,6 @@
 
 namespace App\View;
 
-use Exception;
 use Itm\View\View as BaseView;
 
 class View extends BaseView

@@ -4,13 +4,8 @@ namespace Meat\Commands;
 
 use Itm\Contracts\Bus\Command;
 
-class RegisterClient implements Command
+class CreateStore implements Command
 {
-    /**
-     * @var string
-     */
-    public $name;
-
     /**
      * @var string
      */
@@ -19,17 +14,7 @@ class RegisterClient implements Command
     /**
      * @var string
      */
-    public $email;
-
-    /**
-     * @var string
-     */
-    public $password;
-
-    /**
-     * @var string
-     */
-    public $neighborhoodId;
+    public $name;
 
     /**
      * @var string
@@ -40,4 +25,9 @@ class RegisterClient implements Command
      * @var string
      */
     public $phone;
+
+    /**
+     * @var string
+     */
+    public $cityId;
 }

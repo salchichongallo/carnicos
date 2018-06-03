@@ -12,9 +12,9 @@ class ShopKeeper
     protected $id;
 
     /**
-     * @var SalePoint
+     * @var Store
      */
-    protected $salePoint;
+    protected $store;
 
     /**
      * @var User
@@ -39,20 +39,21 @@ class ShopKeeper
     }
 
     /**
-     * @return SalePoint
+     * @return Store
      */
-    public function getSalePoint()
+    public function getStore()
     {
-        return $this->salePoint;
+        return $this->store;
     }
 
     /**
-     * @param  SalePoint $salePoint
+     * @param  Store $store
+     *
      * @return void
      */
-    public function setSalePoint(SalePoint $salePoint): void
+    public function setStore(Store $store): void
     {
-        $this->salePoint = $salePoint;
+        $this->store = $store;
     }
 
     /**
