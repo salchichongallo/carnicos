@@ -47,10 +47,14 @@ class AuthService implements AuthServiceContract
 
     public function attempt(string $email, string $password): User
     {
-        $user = $this->repository->findByEmail($email);
+        try {
+            $user = $this->repository->findByEmail($email);
+        } catch (Exception $exception) {
+            throw new AuthException('Invalid credentials: ' . $exception->getMessage());
+        }
 
-        if (! $this->hasher->check($password, $user->getPassword())) {
-            throw new Exception('Invalid credentials.');
+        if (is_null($user) || ! $this->hasher->check($password, $user->getPassword())) {
+            throw new AuthException('Invalid credentials.');
         }
 
         $this->session->user = $user->getId();

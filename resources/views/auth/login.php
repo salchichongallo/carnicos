@@ -8,7 +8,10 @@
         <div class="app-main">
             <div class="app-content-wrapper">
                 <main class="app-content-wrapper__content page-login">
+
                     <h1 class="page-title">Login</h1>
+
+                    <?php partial('message'); ?>
 
                     <form action="?menu=login" method="POST" class="page-login__form">
                         <label for="email" class="form-control">

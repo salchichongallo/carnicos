@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Itm\Http\Request;
+use App\Auth\AuthException;
 use Meat\Commands\RegisterLogin;
 use Meat\Contracts\Auth\AuthService;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,14 @@ class LoginController extends Controller
 
     public function login(AuthService $auth, Request $request)
     {
-        $user = $auth->attempt($request->email, $request->password);
+        try {
+            $user = $auth->attempt($request->email, $request->password);
+        } catch (AuthException $exception) {
+            session()->set('message', $exception->getMessage());
+            session()->set('message_type', 'error');
+
+            return redirect('?menu=login');
+        }
 
         dispatch(new RegisterLogin($user));
 
