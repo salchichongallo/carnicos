@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     WelcomeController,
     PromotionController,
     StoreController,
+    SurveyController,
     Auth\LoginController,
     Auth\RegisterController
 };
@@ -39,6 +40,17 @@ $router->post('nuevo_cliente', CustomerController::class)->create();
 
 $router->get('registrar_venta', SaleController::class)->showNewSaleForm();
 $router->post('nueva_venta', SaleController::class)->registerSale();
+
+$router->get('realizar_encuesta', SurveyController::class)->showStep1();
+$router->post('pregunta_1', SurveyController::class)->step1();
+$router->post('pregunta_2', SurveyController::class)->step2();
+$router->post('pregunta_3', SurveyController::class)->step3();
+$router->post('pregunta_4', SurveyController::class)->step4();
+$router->post('pregunta_5', SurveyController::class)->step5();
+$router->post('pregunta_6', SurveyController::class)->step6();
+$router->post('pregunta_7', SurveyController::class)->step7();
+$router->post('pregunta_8', SurveyController::class)->step8();
+$router->post('terminar_encuesta', SurveyController::class)->finishSurvey();
 
 $router->get('404', WelcomeController::class)->showNotFound();
 $router->post('404', WelcomeController::class)->showNotFound();

@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Exception;
+use Meat\User;
 use App\Database\Table;
 use Meat\Store\Customer;
 use App\Database\Mappers\CustomerMapper;
@@ -33,5 +35,27 @@ class CustomerRepository implements CustomerRepositoryContract
             ->insert($this->mapper->toTable(
                 $customer
             ));
+    }
+
+    public function findByUser(User $user): Customer
+    {
+        $result = $this->db
+            ->table(Table::CUSTOMERS)
+            ->where('usuario_id', '=', $user->getId())
+            ->first();
+
+        if (! $result) {
+            throw new Exception("Customer with user [{$user->getId()}] not found.");
+        }
+
+        return $this->mapper->fromTableWithUser($result, $user);
+    }
+
+    public function markSurvey(Customer $customer): void
+    {
+        $this->db
+            ->table(Table::CUSTOMERS)
+            ->where('id', '=', $customer->getId())
+            ->update([ 'encuesta_realizada' => true ]);
     }
 }

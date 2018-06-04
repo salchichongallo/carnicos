@@ -17,6 +17,11 @@ class Customer
     protected $user;
 
     /**
+     * @var bool
+     */
+    protected $surveyMade = false;
+
+    /**
      * @return string
      */
     public function getId()
@@ -48,5 +53,15 @@ class Customer
     public function setUser(User $user): void
     {
         $this->user = $user;
+    }
+
+    public function surveyMade(): bool
+    {
+        return $this->surveyMade ?? false;
+    }
+
+    public function setSurveyMade(bool $value): void
+    {
+        $this->surveyMade = $value;
     }
 }

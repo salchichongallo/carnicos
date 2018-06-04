@@ -15,7 +15,11 @@ export class Product {
   }
 
   protected handleClick(): void {
-    // Does nothing :P
+    if (this.isSelected) {
+      this.unselect();
+    } else {
+      this.select();
+    }
   }
 
   protected select(): void {
@@ -50,3 +54,5 @@ export class Product {
     return String(nameElement.innerHTML);
   }
 }
+
+Reflect.set(window, 'Product', Product);

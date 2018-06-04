@@ -81,6 +81,11 @@ $app->singleton(
             \Meat\Handlers\RegisterSale::class
         );
 
+        $bus->map(
+            \Meat\Commands\MarkSurvey::class,
+            \Meat\Handlers\MarkSurvey::class
+        );
+
         return $bus;
     }
 );

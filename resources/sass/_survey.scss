@@ -1,0 +1,39 @@
+.page-survey {
+  max-width: 700px;
+}
+
+.survey {
+  &__question {
+    display: block;
+    margin: 50px 0 30px 0;
+  }
+
+  &__actions {
+    display: block;
+    margin-top: 2em;
+  }
+
+  &__center {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  &__radios {
+    @extend .survey__center;
+  }
+
+  &__radio {
+    display: block;
+
+    > label {
+      display: flex;
+      padding: 1em 0;
+      cursor: pointer;
+      align-items: center;
+    }
+  }
+
+  &__input {
+    margin-bottom: 1.5em;
+  }
+}

@@ -23,13 +23,14 @@
     width: 100%;
   }
 
+  &--min-width {
+    min-width: 88px;
+  }
+
   &:active,
   &:focus {
     box-shadow: 0 0 0 2px rgba($primary-color, .6);
   }
-
-  &.m-r { margin-right: 8px; }
-  &.m-l { margin-left: 8px; }
 
   > .icon { color: currentColor; }
 }

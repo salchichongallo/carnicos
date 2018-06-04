@@ -30,6 +30,17 @@ $app->singleton(
 
             ->register('sales.register', 'sales/register.php')
 
+            ->register('survey.step1', 'survey/steps/step1.php')
+            ->register('survey.step2', 'survey/steps/step2.php')
+            ->register('survey.step3', 'survey/steps/step3.php')
+            ->register('survey.step4', 'survey/steps/step4.php')
+            ->register('survey.step5', 'survey/steps/step5.php')
+            ->register('survey.step6', 'survey/steps/step6.php')
+            ->register('survey.step7', 'survey/steps/step7.php')
+            ->register('survey.step8', 'survey/steps/step8.php')
+            ->register('survey.thanks', 'survey/thanks.php')
+            ->register('survey.survey_made', 'survey/survey_made.php')
+
             ->register('404', 'errors/404.php')
             ->register('403', 'errors/403.php');
     }
